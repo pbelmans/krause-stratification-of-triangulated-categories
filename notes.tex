@@ -1,0 +1,167 @@
+\documentclass[10pt,a4paper]{article}
+\input{packages}
+\input{configuration}
+\input{macros}
+
+\title{Stratification of triangulated categories}
+\author{Pieter Belmans}
+
+\begin{document}
+\maketitle
+
+\section{Day 2: Infinite methods}
+\subsection{Compact objects}
+Let~$\mathcal{T}$ be a triangulated category, denote~$\Sigma$ its shift or suspension, and assume that~$\mathcal{T}$ has set-indexed coproducts.
+\begin{definition}
+  An object~$X$ of~$\mathcal{T}$ is \emph{compact} if~$\Hom_{\mathcal{T}}(X,-)\colon\mathcal{T}\to\Ab$ preserves coproducts.
+\end{definition}
+\begin{lemma}
+  An object~$X$ is compact if and only if for all~$X\to\coprod_{i\in I}Y_i$ there exists a factorisation through~$\coprod_{i\in I}Y_i$, where~$I_0\subseteq I_0$ is a finite subset.
+\end{lemma}
+\begin{remark}
+  These compact objects serve as building blocks for the category~$\mathcal{T}$ and they constitute a thick subcategory~$\mathcal{T}^\cc$.
+\end{remark}
+\begin{definition}
+  The category~$\mathcal{T}$ is \emph{compactly generated} if~$\mathcal{T}=\Loc(\mathcal{C})$, for some set of compact objects~$\mathcal{C}$.
+\end{definition}
+\begin{proposition}
+  For a set of compact objects~$\mathcal{C}\subseteq\mathcal{T}^\cc$ the following are equivalent:
+  \begin{enumerate}
+    \item $\Loc(\mathcal{C})=\mathcal{T}$;
+    \item for all objects~$X$ in~$\mathcal{T}$ such that~$\Hom_{\mathcal{T}}(\Sigma^nC,X)=0$ for all objects~$C\in\mathcal{C}$ and~$n\in\mathbb{Z}$ we have~$X=0$.
+  \end{enumerate}
+
+  \begin{proof}
+    From (1) to (2) is easy: let~$X$ be an object of~$\mathcal{T}$ and consider
+    \begin{equation}
+      % TODO improve notation
+      {}^\perp X\coloneqq\left\{ V\in\mathcal{T}\mid\Hom_{\mathcal{T}}(\Sigma^nV,X)=0,\forall n\in\mathbb{Z} \right\}
+    \end{equation}
+    which is a localising subcategory of~$\mathcal{T}$. If~$\mathcal{C}\subseteq^\perp X$ then~$X=0$.
+
+    From (2) to (1) we have to use Brown representability (see later), which depends on the compactness of the objects. The inclusion~$\Loc(\mathcal{C})\hookrightarrow\mathcal{T}$ has a right adjoint~$\Gamma$. Let~$X$ be an object of~$\mathcal{T}$, by the adjunction we have a morphism~$\Gamma(X)\to X$ that we can complete to a triangle
+    \begin{equation}
+      \Gamma(X)\to X\to X'\to
+    \end{equation}
+    and the long exact sequence obtained by applying~$\Hom_{\mathcal{T}}(V,-)$ tells us that~$\Hom_{\mathcal{T}}(V,X')=0$ for all~$X\in\Loc(\mathcal{C})$. So if (2) holds then we have~$X'=0$ and therefore~$X\in\Loc(\mathcal{C})$.% TODO improve the proof
+  \end{proof}
+\end{proposition}
+\begin{proposition}
+  Let~$X$ and~$Y$ be compact objects of~$\mathcal{T}$. If~$Y\in\Loc(X)$ then~$Y\in\Thick(X)$.
+\end{proposition}
+Hence if a compact objects~$Y$ can be obtained from a compact objects~$X$ in infinitely many steps it can also be done in finitely many.
+\begin{example}
+  Let~$A$ be any ring and take~$X\in\derived(\Mod/A)$. Then the following are equivalent:
+  \begin{enumerate}
+    \item $X\in\Thick(A)$;
+    \item $X$ is isomorphic to a perfect complex;
+    \item $X$ is compact.
+  \end{enumerate}
+\end{example}
+
+\subsection{Brown representability}
+\begin{theorem}
+  Let~$\mathcal{T}$ be a compactly generated triangulated category. For a functor~$H\colon\mathcal{T}^\opp\to\Ab$ the following are equivalent:
+  \begin{enumerate}
+    \item $H$ is cohomological (i.e.\ it sends exact triangles to exact sequences and it sends coproducts to products);
+    \item $H$ is representable (i.e.\ there exists an object~$X\in\mathcal{T}$ such that~$H\cong\Hom_{\mathcal{T}}(-,X)$).
+  \end{enumerate}
+\end{theorem}
+\begin{corollary}
+  Let~$\mathcal{T}$ be a compactly generated triangulated category. Then~$\mathcal{T}$ has all coproducts.
+  \begin{proof}
+    Consider~$\{X_i\}_{i\in I}$ a family of objects in~$\mathcal{T}$. Then~$\prod_{i\in I}\Hom_{\mathcal{T}}(-,X_i)$ satisfies condition (1) in the Brown representability theorem, hence it must be representable by an object that satisfies the universal property for a product.
+  \end{proof}
+\end{corollary}
+\begin{corollary}
+  Let~$\mathcal{T}$ be a compactly generated triangulated category and~$\mathcal{U}$ be any triangulated category. Then for all exact functors~$F\colon\mathcal{T}\to\mathcal{U}$ the following are equivalent:
+  \begin{enumerate}
+    \item $F$ preserves coproducts;
+    \item $F$ admits a right adjoint~$G$.
+  \end{enumerate}
+  \begin{proof}
+    From (1) to (2) we consider any object~$X$ in~$\mathcal{U}$, then~$\Hom_{\mathcal{U}}(F(-),X)\colon\mathcal{T}^\opp\to\Ab$ satisfies condition (1) in the Brown representability theorem, hence it can be represented as~$\Hom_{\mathcal{T}}(-,Y)$, and set~$G(X)\coloneqq Y$.
+
+    From (2) to (1) is trivial as left adjoints preserve coproducts.
+  \end{proof}
+\end{corollary}
+We will often take~$\mathcal{U}$ a Verdier quotient in applications.
+
+\subsection{Bousfield localisation}
+Let~$\mathcal{T}$ be a triangulated category and~$\mathcal{S}$ a thick subcategory. Its \emph{Verdier quotient}
+\begin{equation}
+  \mathcal{T}/\mathcal{S}\coloneqq\mathcal{T}[\{\sigma\in\Mor(\mathcal{T})\mid\cone(\sigma)\in\mathcal{S}\}^{-1}]
+\end{equation}
+is again triangulated, the quotient functor~$Q\colon\mathcal{T}\to\mathcal{S}$ is exact and its kernel~$\ker(Q)=\mathcal{S}$, where the \emph{kernel} and \emph{essential image}
+\begin{equation}
+  \begin{aligned}
+    \ker(F)&\coloneqq\{X\in\mathcal{T}\mid F(X)=0\} \\
+    \image(F)&\coloneqq\{Y\in\mathcal{U}\mid \exists X\in\mathcal{T}\colon Y\cong F(X)\}
+  \end{aligned}
+\end{equation}
+are full triangulated subcategories.
+\begin{example}
+  Let~$\mathcal{A}$ be an abelian category. Then~$\derived(\mathcal{A})\coloneqq\mathbf{K}(\mathcal{A})/\mathbf{K}_\ac(\mathcal{A})$ is a triangulated category.
+\end{example}
+\begin{remark}
+  A priori it is unclear whether a Verdier quotient~$\mathcal{T}/\mathcal{S}$ is locally small.
+\end{remark}
+\begin{definition}
+   there is a natural transformation~$\eta\colon\identity_{\mathcal{T}}\Rightarrow L$ such that
+  \begin{enumerate}
+    \item $L\circ\eta\colon L\Rightarrow L^2$ is invertible, i.e.\ for all~$X$ the morphism~$L(\eta_X)\colon L(X)\to L^2(X)$ is an isomorphism;
+    \item $L\circ\eta=\eta\circ L$, i.e.\ $L(\eta_X)=\eta_{L(X)}$.
+  \end{enumerate}
+\end{definition}
+\begin{definition}
+  A \emph{localisation functor} is an exact endofunctor~$\Gamma\colon\mathcal{T}\to\mathcal{T}$ for which~$\Gamma^\opp$ is a localisation functor.
+\end{definition}
+\begin{remark}
+  The notation~$\Gamma$ is a reference both to Grothendieck's local cohomology functor and the symmetry between~$L$ and~$\Gamma$.
+\end{remark}
+\begin{proposition}
+  For a thick subcategory~$\mathcal{S}$ the following are equivalent:
+  \begin{enumerate}
+    \item $\mathcal{S}\hookrightarrow\mathcal{T}$ admits a right adjoint;
+    \item $Q\colon\mathcal{T}\to\mathcal{T}/\mathcal{S}$ admits a right adjoint;% TODO check these
+    \item there exists a localisation functor~$L$ such that~$\ker(L)=\mathcal{S}$;
+    \item there exists a colocalisation functor~$\Gamma$ such that~$\image(\Gamma)=\mathcal{S}$.
+  \end{enumerate}
+\end{proposition}
+In this case, the following holds:
+\begin{enumerate}
+  \item for all objects~$X$ in~$\mathcal{T}$ there exists a functorial triangle
+    \begin{equation}
+      \Gamma(X)\to X\to L(X)\to
+    \end{equation}
+  \item $\mathcal{S}^\perp=\image(L)=\ker(\Gamma)$ and~${}^\perp(\mathcal{S}^\perp)=\mathcal{S}$ (where a priori the left-hand side could be bigger);
+  \item $\Gamma$ induces a right adjoint for the inclusion~$\mathcal{S}\hookrightarrow\mathcal{T}$;
+  \item $L$ induces a left adjoint for the inclusion~$\mathcal{S}^\perp\hookrightarrow\mathcal{T}$;
+\end{enumerate}
+\begin{remark}
+  This is related to the notion of semi-orthogonal decompositions: we obtain~$\mathcal{T}=\langle\mathcal{S}^\perp,\mathcal{S}\rangle=\langle\mathcal{S},^\perp\mathcal{S}\rangle$. A useful mnemonic (suggested by Sasha Kuznetsov) is that~$\perp$ is always in the middle.
+\end{remark}
+\begin{example}
+  Let~$\mathcal{T}$ be a compactly generated triangulated category. Let~$\mathcal{S}=\Loc(\mathcal{C})$ be a localising subcategory generated by a set of compact objects~$\mathcal{C}$. We obtain a diagram% TODO fix double headed
+  \begin{equation}
+    \begin{tikzcd}
+      \mathcal{S}^\cc \arrow[hook]{r} \arrow[hook]{d} & \mathcal{T}^\cc \arrow{r} \arrow[hook]{d} & \mathcal{T}^\cc/\mathcal{S}^\cc \arrow{d} \\
+      \mathcal{S} \arrow[hook]{r} & \mathcal{T} \arrow{r} & \mathcal{T}/\mathcal{S}
+    \end{tikzcd}
+  \end{equation}
+  where~$\mathcal{S}^\cc=\Thick(\mathcal{C})$ and the induced functor~$\mathcal{T}^\cc/\mathcal{S}^\cc\to(\mathcal{T}/\mathcal{S})^\cc$ is an equivalence up to direct summands.
+\end{example}
+
+\subsection{Describing localising subcategories}
+The problem that we would like to solve is the description of all localising subcategories of a compactly generated triangulated category. Some obvious questions that arise are:
+\begin{enumerate}
+  \item do they form a set or a proper class?
+  \item how can we explicitly describe them?
+\end{enumerate}
+
+% TODO finish this last part
+
+
+
+\end{document}
+
