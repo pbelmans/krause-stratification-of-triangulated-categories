@@ -570,7 +570,32 @@ Whereas day 3 we discussed the stratification of big triangulated categories we 
   where~$\Lambda_n$ is the \emph{Beilinson algebra}~$\End(T)$, which is a finite-dimensional algebra.
 \end{theorem}
 The Beilinson algebra is described by the Beilinson quiver with relations, which is given by
-% TODO draw picture
+\begin{equation}
+  \begin{tikzpicture}[shorten >= 2pt, shorten <= 2pt]
+    \node (v0) {};
+    \node (v1) [right of = v0] {};
+    \node (v2) [right of = v1] {};
+    \node (v3) [right of = v2] {\ldots};
+    \node (vn1) [right of = v3] {};
+    \node (vn) [right of = vn1] {};
+
+    \draw (v0)  circle (2pt) node [above] {\footnotesize 0};
+    \draw (v1)  circle (2pt) node [above] {\footnotesize 1};
+    \draw (v2)  circle (2pt) node [above] {\footnotesize 2};
+    \draw (vn1) circle (2pt) node [above] {\footnotesize $n-1$};
+    \draw (vn)  circle (2pt) node [above] {\footnotesize $n$};
+
+    \path[->] (v0) edge [bend left = 20]  node [above] {\small $x_0$} (v1);
+    \path[->] (v0) edge [bend right = 20] node [below] {\small $x_n$} (v1);
+    \path (v0) -- (v1) node[midway] {$\hdots$};
+    \path[->] (v1) edge [bend left = 20]  node [above] {\small $x_0$} (v2);
+    \path[->] (v1) edge [bend right = 20] node [below] {\small $x_n$} (v2);
+    \path (v1) -- (v2) node[midway] {$\hdots$};
+    \path[->] (vn1) edge [bend left = 20]  node [above] {\small $x_0$} (vn);
+    \path[->] (vn1) edge [bend right = 20] node [below] {\small $x_n$} (vn);
+    \path (vn1) -- (vn) node[midway] {$\hdots$};
+  \end{tikzpicture}
+\end{equation}
 and relations~$x_ix_j=x_jx_i$, for all~$i,j=0,\dotsc,n$.
 
 In the special case that~$n=1$ we get the Kronecker algebra
