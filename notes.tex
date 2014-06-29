@@ -48,11 +48,11 @@ Let~$\mathcal{T}$ be a triangulated category, denote~$\Sigma$ its shift or suspe
     \begin{equation}
       \Gamma(X)\to X\to X'\to
     \end{equation}
-    and the long exact sequence obtained by applying~$\Hom_{\mathcal{T}}(V,-)$ tells us that~$\Hom_{\mathcal{T}}(V,X')=0$ for all~$X\in\Loc(\mathcal{C})$. So if (2) holds then we have~$X'=0$ and therefore~$X\in\Loc(\mathcal{C})$.% TODO improve the proof
+    and the long exact sequence that we can obtain by applying~$\Hom_{\mathcal{T}}(V,-)$ tells us that~$\Hom_{\mathcal{T}}(V,X')=0$ for all~$X\in\Loc(\mathcal{C})$. So if (2) holds then we have~$X'=0$ and therefore~$X\in\Loc(\mathcal{C})$.% TODO improve the proof
   \end{proof}
 \end{proposition}
 \begin{proposition}
-  Let~$X$ and~$Y$ be compact objects of~$\mathcal{T}$. If~$Y\in\Loc(X)$ then~$Y\in\Thick(X)$.
+  Let~$X$ and~$Y$ be compact object of~$\mathcal{T}$. If~$Y\in\Loc(X)$ then we already have~$Y\in\Thick(X)$.
 \end{proposition}
 Hence if a compact objects~$Y$ can be obtained from a compact objects~$X$ in infinitely many steps it can also be done in finitely many.
 \begin{example}
@@ -68,8 +68,8 @@ Hence if a compact objects~$Y$ can be obtained from a compact objects~$X$ in inf
 \begin{theorem}
   Let~$\mathcal{T}$ be a compactly generated triangulated category. For a functor~$H\colon\mathcal{T}^\opp\to\Ab$ the following are equivalent:
   \begin{enumerate}
-    \item $H$ is cohomological (i.e.\ it sends exact triangles to exact sequences and it sends coproducts to products);
-    \item $H$ is representable (i.e.\ there exists an object~$X\in\mathcal{T}$ such that~$H\cong\Hom_{\mathcal{T}}(-,X)$).
+    \item $H$ is cohomological, i.e.\ it sends exact triangles to exact sequences and it sends coproducts to products;
+    \item $H$ is representable, i.e.\ there exists an object~$X\in\mathcal{T}$ such that~$H\cong\Hom_{\mathcal{T}}(-,X)$.
   \end{enumerate}
 \end{theorem}
 \begin{corollary}
@@ -85,7 +85,11 @@ Hence if a compact objects~$Y$ can be obtained from a compact objects~$X$ in inf
     \item $F$ admits a right adjoint~$G$.
   \end{enumerate}
   \begin{proof}
-    From (1) to (2) we consider any object~$X$ in~$\mathcal{U}$, then~$\Hom_{\mathcal{U}}(F(-),X)\colon\mathcal{T}^\opp\to\Ab$ satisfies condition (1) in the Brown representability theorem, hence it can be represented as~$\Hom_{\mathcal{T}}(-,Y)$, and set~$G(X)\coloneqq Y$.
+    From (1) to (2) we consider any object~$X$ in~$\mathcal{U}$, then the functor
+    \begin{equation}
+      \Hom_{\mathcal{U}}(F(-),X)\colon\mathcal{T}^\opp\to\Ab 
+    \end{equation}
+    satisfies condition (1) in the Brown representability theorem, hence it can be represented as~$\Hom_{\mathcal{T}}(-,Y)$, and set~$G(X)\coloneqq Y$.
 
     From (2) to (1) is trivial as left adjoints preserve coproducts.
   \end{proof}
@@ -97,7 +101,7 @@ Let~$\mathcal{T}$ be a triangulated category and~$\mathcal{S}$ a thick subcatego
 \begin{equation}
   \mathcal{T}/\mathcal{S}\coloneqq\mathcal{T}[\{\sigma\in\Mor(\mathcal{T})\mid\cone(\sigma)\in\mathcal{S}\}^{-1}]
 \end{equation}
-is again triangulated, the quotient functor~$Q\colon\mathcal{T}\to\mathcal{S}$ is exact and its kernel~$\ker(Q)=\mathcal{S}$, where the \emph{kernel} and \emph{essential image}
+is again a triangulated category, the quotient functor~$Q\colon\mathcal{T}\to\mathcal{S}$ is exact and its kernel~$\ker(Q)=\mathcal{S}$, where the \emph{kernel} and \emph{essential image}
 \begin{equation}
   \begin{aligned}
     \ker(F)&\coloneqq\{X\in\mathcal{T}\mid F(X)=0\} \\
@@ -112,7 +116,7 @@ are full triangulated subcategories.
   A priori it is unclear whether a Verdier quotient~$\mathcal{T}/\mathcal{S}$ is locally small.
 \end{remark}
 \begin{definition}
-   there is a natural transformation~$\eta\colon\identity_{\mathcal{T}}\Rightarrow L$ such that
+   There is a natural transformation~$\eta\colon\identity_{\mathcal{T}}\Rightarrow L$ such that
   \begin{enumerate}
     \item $L\circ\eta\colon L\Rightarrow L^2$ is invertible, i.e.\ for all~$X$ the morphism~$L(\eta_X)\colon L(X)\to L^2(X)$ is an isomorphism;
     \item $L\circ\eta=\eta\circ L$, i.e.\ $L(\eta_X)=\eta_{L(X)}$.
@@ -167,9 +171,9 @@ The problem that we would like to solve is the description of all localising sub
 % TODO finish this last part
 
 
-\section{Day 3: Stratification of big triangulated categories}
+\section{Day 3: Stratifying of big triangulated categories}
 \subsection{Rings acting on triangulated categories}
-Recall that for a commutative noetherian ring~$A$ we have the associated (big) derived category~$\derived(A)\coloneqq\derived(\Mod/A)$, and to an object~$X$ in~$\derived(A)$ we have associated a support~$\supp X$ and~$\cosupp X$ which are subsets of~$\Spec A$. This way we parametrise localising subcategories\fixthis{is this a summary or an announcement?}.
+Recall that for a commutative noetherian ring~$A$ we have the associated (big) derived category~$\derived(A)\coloneqq\derived(\Mod/A)$, and to an object~$X$ in~$\derived(A)$ we have associated a support~$\supp X$ and~$\cosupp X$ which are subsets of~$\Spec A$. This way we parametrise localising subcategories.
 \begin{lemma}
   Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\supp X\subseteq \supp Y$ if and only if~$\Loc(X)\subseteq\Loc(Y)$.
 \end{lemma}
@@ -179,7 +183,7 @@ Recall that for a commutative noetherian ring~$A$ we have the associated (big) d
 \end{lemma}
 
 \begin{corollary}
-  Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\Ext^\bullet(X,Y)=0$\checkthis{notation introduced?} if and only if~$\supp X\cap\cosupp Y=\emptyset$.
+  Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\Ext_A^\bullet(X,Y)=0$ if and only if~$\supp X\cap\cosupp Y=\emptyset$.
 \end{corollary}
 
 Now more generally, let~$\mathcal{T}$ be a triangulated category.
@@ -267,7 +271,7 @@ So now we have the notion of~$\mathfrak{p}$\dash local objects and~$\mathfrak{p}
 \end{remark}
 
 \begin{lemma}
-  Let~$V$ and~$W$ be specialisation-closed subsets of~$\Spec R$ such that~$V\setminus W=\{\mathfrak{p}\}$. Then
+  Let~$V$ and~$W$ be specialisation-closed subsets of~$\Spec R$ such that we have~$V\setminus W=\{\mathfrak{p}\}$. Then
   \begin{equation}
     \Gamma_V\circ\Gamma_W\cong\Gamma_{\mathfrak{p}}\cong\Gamma_W\circ\Gamma_V.
   \end{equation}
@@ -334,10 +338,10 @@ We now come to the main definition of the lecture series.
     \item The local-to-global principle holds whenever~$\dim R<+\infty$, or when~$\mathcal{T}$ ``has a model.''
     \item Suppose that the local-to-global-principle holds, then we have bijections
       \begin{equation}
-        \begin{aligned}
-          \left\{ \text{localising subcategories of $\mathcal{T}$} \right\} & \overset{\longleftrightarrow}{1:1} \left\{ \text{collections of localising subcategories $\mathcal{S}_{\mathfrak{p}}\subseteq\mathcal{T}_{\mathfrak{p}}$ for all~$p\in\Spec R$} \right\} \\
-          \mathcal{S}\subseteq\mathcal{T} & \longmapsto (\mathcal{S}\cap\Gamma_{\mathfrak{p}}(\mathcal{T}))_{\mathfrak{p}\in\Spec R}.
-        \end{aligned}
+        \begin{tikzcd}
+          \left\{ \text{localising subcategories of $\mathcal{T}$} \right\} \arrow[leftrightarrow]{d}{1:1} & \mathcal{S}\subseteq\mathcal{T} \arrow[mapsto]{d} \\
+          \left\{ \substack{\displaystyle\text{collections of localising subcategories of~$\mathcal{T}_{\mathfrak{p}}$} \\ \displaystyle\text{for all $p\in\Spec R$}} \right\} & (\mathcal{S}\cap\Gamma_{\mathfrak{p}}(\mathcal{T}))_{\mathfrak{p}\in\Spec R}.
+        \end{tikzcd}
       \end{equation}
   \end{enumerate}
 \end{proposition}
@@ -362,7 +366,7 @@ We now come to the main definition of the lecture series.
 
 We say~$\mathcal{T}$ is \emph{noetherian} if~$\Hom_{\mathcal{T}}^\bullet(X,Y)$ is finitely generated over~$R$ for all compact objects~$X$ and~$Y$ of~$\mathcal{T}$.
 \begin{lemma}
-  If~$\End_{\mathcal{T}}^\bullet(X)$ is noetherian then~$\supp_R X=\VV(\mathfrak{a})$, for~$\mathfrak{a}\coloneqq\ker(R\to\End_{\mathcal{T}}^\bullet(X))$.
+  Let~$X$ be an object of~$\mathcal{T}$. If~$\End_{\mathcal{T}}^\bullet(X)$ is noetherian then~$\supp_R X=\VV(\mathfrak{a})$, for~$\mathfrak{a}\coloneqq\ker(R\to\End_{\mathcal{T}}^\bullet(X))$.
 \end{lemma}
 This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
 \begin{theorem}
@@ -394,8 +398,8 @@ This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
 \end{example}
 
 
-\section{Day 4: $\mathbf{K}(\Inj/X)$ and Grothendieck duality}
-\subsection{$\derived^\bounded(X)$ and compact objects}
+\section{Day 4: \texorpdfstring{$\mathbf{K}(\Inj/X)$}{K(Inj/X)} and Grothendieck duality}
+\subsection{\texorpdfstring{$\derived^\bounded(X)$}{Db(X)} and compact objects}
 Let~$X$ be a separated noetherian scheme. We have a chain of inclusions
 \begin{equation}
   \begin{tikzcd}
@@ -404,7 +408,7 @@ Let~$X$ be a separated noetherian scheme. We have a chain of inclusions
 \end{equation}
 of triangulated categories. We can relate the outer two by the following proposition:
 \begin{proposition}
-  The category~$\derived(\Qcoh/X)$ is compactly generated, with~$\derived(\Qcoh/X)^\cc\cong\derived^\perf(X)$.
+  The derived category~$\derived(\Qcoh/X)$ is compactly generated, with $\derived(\Qcoh/X)^\cc\cong\derived^\perf(X)$.
 \end{proposition}
 
 But for Grothendieck duality (amongst other reasons) we are mostly interested in~$\derived^\bounded(\coh/X)$, which contains noncompact objects (relative to~$\derived(\Qcoh/X)$) if~$X$ is not regular. Hence the category~$\derived(\Qcoh/X)$ is ``too small'' to have~$\derived^\bounded(\coh/X)$ as its category of compacts.
@@ -552,7 +556,7 @@ with the bottom line being Grothendieck duality in the classical sense.
   The results of the PhD thesis by Murfet generalise this to noetherian schemes.
 \end{remark}
 
-\section{Day 5: Stratification of small triangulated categories}
+\section{Day 5: Stratifying small triangulated categories}
 Whereas day 3 concerned the stratification of big triangulated categories we now focus on the story in the small setting, i.e.\ the isomorphism classes of the objects in the category actually form a set.
 
 \subsection{Example: stratifying the bounded derived category of the Kronecker algebra}
@@ -612,12 +616,12 @@ This behaviour can be generalised to all path algebras, and in the Dynkin case (
   where non-crossing partitions are a subset of the Weyl group~$\mathrm{W}(\Delta)$
 \end{theorem}
 
-In order to describe the second bijection, we use that thick subcategories of~$\derived^\bounded(\mathrm{mod}/A)$ are all generated by exceptional objects, i.e.\ are described by~$\Thick(\{E_1,\dotsc,E_r\})$. Associated to~$E_i$ is a reflection~$\mathrm{s}_{E_i}$ in the Weyl group, and the second bijection sends~$\mathcal{D}$ to the composition of reflections~$\mathrm{s}_{E_1}\dotsm\mathrm{s}_{E_r}$. This is a result of Ingalls--Thomas.
+In order to describe the second bijection in this diagram we use the fact that thick subcategories of~$\derived^\bounded(\mathrm{mod}/A)$ are all generated by exceptional objects, i.e.\ are described by~$\Thick(\{E_1,\dotsc,E_r\})$. Associated to~$E_i$ is a reflection~$\mathrm{s}_{E_i}$ in the Weyl group, and the second bijection sends~$\mathcal{D}$ to the composition of reflections~$\mathrm{s}_{E_1}\dotsm\mathrm{s}_{E_r}$. This is a result of Ingalls--Thomas.
 
 \begin{remark}
   The theorem generalises to arbitrary quivers, if one considers the set of all thick subcategories generated by exceptional objects instead of all thick subcategories.
 
-  In general we get the following correspondence for a hereditary finite-dimensional~$k$\dash algebra~$A$.
+  In general we get the following correspondence for~$A$ a hereditary finite-dimensional $k$\dash algebra.
 
   \begin{center}
     \begin{tabular}{cc}
@@ -638,7 +642,11 @@ We now focus on the local-to-global principle for small triangulated categories~
 
 Assume that a graded commutative ring~$R$ acts on~$\mathcal{T}$.
 \begin{proposition}
-  For all~$\mathfrak{p}\in\Spec R$ there exists an exact quotient\fixthis{localisation?} functor~$\mathcal{T}\to\mathcal{T}_{\mathfrak{p}}:X\mapsto X_{\mathfrak{p}}$ such that
+  For all~$\mathfrak{p}\in\Spec R$ there exists an exact quotient functor
+  \begin{equation}
+    \mathcal{T}\to\mathcal{T}_{\mathfrak{p}}:X\mapsto X_{\mathfrak{p}}
+  \end{equation}
+  such that
   \begin{equation}
     \Hom_{\mathcal{T}}^\bullet(X,Y)_{\mathfrak{p}}\cong\Hom_{\mathcal{T}_{\mathfrak{p}}}(X_{\mathfrak{p}},Y_{\mathfrak{p}}).
   \end{equation}
@@ -702,10 +710,10 @@ For a homogeneous prime ideal~$\mathfrak{p}$ of~$R$ we set
 i.e.\ we take the~$\mathfrak{p}$\dash local and~$\mathfrak{p}$\dash torsion objects, which forms a thick subcategory of~$\mathcal{T}_{\mathfrak{p}}$.
 
 \begin{definition}
-  The triangulated category~$\mathcal{T}$ is \emph{stratified by the action of~$R$} if each~$\Gamma_{\mathfrak{p}}(\mathcal{T})$ has no proper thick subcategories.
+  The triangulated category~$\mathcal{T}$ is \emph{stratified by the action of~$R$} if each of the~$\Gamma_{\mathfrak{p}}(\mathcal{T})$ has no proper thick subcategories.
 \end{definition}
 
-On day 3 we had a similar result for the unbounded case. The small result generalises a result from Hopkins:
+On day 3 we had a similar result for the unbounded case. The result for small categories generalises a result from Hopkins:
 \begin{example}
   For a commutative noetherian ring~$A$ we have that~$\derived^\perf(A)$ is stratified by~$R=A$.
 \end{example}
@@ -722,7 +730,7 @@ Remark that (2) in the theorem relates an asymmetric condition to a symmetric on
 
 We can also prove a converse to this theorem:
 \begin{proposition}
-  Assume that~$\End_{\mathcal{T}}^\bullet(X)$ is finitely generated over~$R$ for all objects~$X$ and~$Y$ of~$\mathcal{T}$. If~$\mathcal{T}$ is not stratified then there exist objects~$X$ and~$Y$ such that~$\supp_R X=\supp_R Y$ but~$\Thick(X)\neq\Thick(Y)$.
+  Assume that~$\End_{\mathcal{T}}^\bullet(X)$ is finitely generated over~$R$ for all objects~$X$ and~$Y$ of~$\mathcal{T}$. If~$\mathcal{T}$ is not stratified then there exist objects~$X$ and~$Y$ of~$\mathcal{T}$ such that~$\supp_R X=\supp_R Y$ but~$\Thick(X)\neq\Thick(Y)$.
 \end{proposition}
 
 As a final remark: the results of day 3 depend on the so-called infinite methods, such as homotopy colimits and Brown representability, whereas today's results use the notion of cohomological functors to make things work.
