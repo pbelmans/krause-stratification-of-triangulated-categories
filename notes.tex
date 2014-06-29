@@ -357,10 +357,10 @@ We now come to the main definition of the lecture series.
 \begin{theorem}
   Suppose that~$\mathcal{T}$ is stratified by~$R$. Then we have a bijection
   \begin{equation}
-    \begin{aligned}
-      \left\{ \text{localising subcategories of~$\mathcal{T}$} \right\} & \overset{longleftrightarrow}{1:1} \left\{ \text{subsets of $\supp_R(\mathcal{T})$} \right\} \\
-      \mathcal{S}\subseteq\mathcal{T} & \longmapsto\supp_R(\mathcal{S})\coloneqq\bigcup_{X\in S}\supp_R X.
-    \end{aligned}
+    \begin{tikzcd}
+      \left\{ \text{localising subcategories of~$\mathcal{T}$} \right\} \arrow[leftrightarrow]{d}{1:1} & \mathcal{S}\subseteq\mathcal{T} \arrow[mapsto]{d} \\
+      \left\{ \text{subsets of $\supp_R(\mathcal{T})$} \right\} & \supp_R(\mathcal{S})\coloneqq\bigcup_{X\in S}\supp_R X.
+    \end{tikzcd}
   \end{equation}
 \end{theorem}
 
@@ -372,10 +372,10 @@ This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
 \begin{theorem}
   Let~$\mathcal{T}$ be as above, and assume moreover that~$\mathcal{T}$ is noetherian. Then we have a bijection
   \begin{equation}
-    \begin{aligned}
-      \left\{ \text{thick subcategories of~$\mathcal{T}^\cc$} \right\} & \overset{\longleftrightarrow}{1:1}\left\{ \text{specialisation-closed subsets of $\Spec R$} \right\} \\
-      \mathcal{S}\subseteq\mathcal{T}^\cc & \longmapsto\supp_R(\mathcal{S}).
-    \end{aligned}
+    \begin{tikzcd}
+      \left\{ \text{thick subcategories of~$\mathcal{T}^\cc$} \right\} \arrow[leftrightarrow]{d}{1:1} & \mathcal{S}\subseteq\mathcal{T}^\cc \arrow[mapsto]{d} \\
+      \left\{ \text{specialisation-closed subsets of $\Spec R$} \right\} & \supp_R(\mathcal{S}).
+    \end{tikzcd}
   \end{equation}
 \end{theorem}
 \begin{corollary}
@@ -388,12 +388,12 @@ This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
 \begin{example}
   \begin{enumerate}
     \item If~$(\mathcal{T},\otimes,\mathbf{1})$ is a tensor triangulated category then~$\mathcal{T}$ is~$\End_{\mathcal{T}}^\bullet(\mathbf{1})$-linear, and we obtain a calssification of tensor ideal localising subcategories. This generalises the classification of localising subcategories to any finite group~$G$, without the assumption on the order of~$G$.
-    \item Let~$A$ be a finite-dimensional~$k$\dash algebra. If we wish to stratify~$\derived(A)$ we run into problems: the center can be \emph{too small}:
+    \item Let~$A$ be a finite-dimensional~$k$\dash algebra. If we wish to stratify~$\derived(A)$ we run into problems as the center can be \emph{too small}:
       \begin{enumerate}
         \item take~$A=kG$ for~$G$ a finite group, then~$\derived(A)^\cc\cong\proj/A$, but we'd rather study~$\stmod(A)$;
         \item take~$A=kQ$ for~$Q$ an acyclic quiver, then~$\centre^\bullet(\derived(A))=k$ if~$Q$ is Dynkin, which is of no use to us.
       \end{enumerate}
-    \item On the other hand, $\centre^\bullet(\mathcal{T})$ can also be \emph{too big} for meaningful calculations, in which case we will often take~$\HH^\bullet(A/k)$ as the ring action on~$\mathcal{T}$.
+    \item On the other hand, $\centre^\bullet(\mathcal{T})$ can also be \emph{too big} for meaningful calculations, in which case we will often take~$\mathrm{HH}^\bullet(A/k)$ as the ring action on~$\mathcal{T}$.
   \end{enumerate}
 \end{example}
 
