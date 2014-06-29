@@ -166,10 +166,229 @@ The problem that we would like to solve is the description of all localising sub
 
 \section{Day 3: Stratification of big triangulated categories}
 \subsection{Rings acting on triangulated categories}
+Recall that for a commutative noetherian ring~$A$ we have the associated (big) derived category~$\derived(A)\coloneqq\derived(\Mod/A)$, and to an object~$X$ in~$\derived(A)$ we have associated a support~$\supp X$ and~$\cosupp X$ which are subsets of~$\Spec A$. This way we parametrise localising subcategories\fixthis{is this a summary or an announcement?}.
+\begin{lemma}
+  Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\supp X\subseteq \supp Y$ if and only if~$\Loc(X)\subseteq\Loc(Y)$.
+\end{lemma}
+
+\begin{lemma}
+  Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\cosupp X\subseteq \cosupp Y$ if and only if~$\Coloc(X)\subseteq\Coloc(Y)$.\checkthis{I didn't copy the right hand side}
+\end{lemma}
+
+\begin{corollary}
+  Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\Ext^\bullet(X,Y)=0$\checkthis{notation introduced?} if and only if~$\supp X\cap\cosupp Y=\emptyset$.
+\end{corollary}
+
+Now more generally, let~$\mathcal{T}$ be a triangulated category.
+\paragraph{Problem} How can we determine that for~$X$ and~$Y$ objects in~$\mathcal{T}$ we have
+\begin{equation}
+  \Hom_{\mathcal{T}}^\bullet(X,Y)\coloneqq\bigoplus_{n\in\mathbb{Z}}\Hom_{\mathcal{T}}(X,\Sigma^nY)=0?
+\end{equation}
+
+Fix a~$\mathbb{Z}$\dash graded commutative ring~$R=\bigoplus_{n\in\mathbb{Z}}R^n$, i.e.\ we have~$rs=(-1)^{|r||s|}sr$ for~$r$ and~$s$ homogeneous elements. This graded-commutativity enters the picture because will often take~$R$ to be a cohomology ring.
+\begin{definition}
+  Let~$\mathcal{T}$ be a triangulated category and~$R$ a graded commutative ring. We say that~$\mathcal{T}$ is~\emph{$R$\dash linear}, or that~\emph{$R$ acts on~$\mathcal{T}$} if there is a homomorphism of rings
+  \begin{equation}
+    \varphi\colon R\to\centre^\bullet(\mathcal{T})
+  \end{equation}
+  where~$\centre^\bullet(\mathcal{T})$ is the \emph{graded centre} of~$\mathcal{T}$, which is the graded commutative ring whose degree~$n$ piece is given by
+  \begin{equation}
+    \centre^n(\mathcal{T})\coloneqq\left\{ \eta\colon\identity_{\mathcal{T}}\Rightarrow\Sigma^n\mid\eta\circ\Sigma=(-1)^n\Sigma\circ\eta \right\}.
+  \end{equation}
+\end{definition}
+So for an object~$X$ of~$\mathcal{T}$ we get a ring homomorphism
+\begin{equation}
+  \varphi_X\colon R\to\End_{\mathcal{T}}^\bullet(X)
+\end{equation}
+and~$\Hom_{\mathcal{T}}^\bullet(X,Y)$ is a graded~$R$\dash module via~$\varphi_X$ acting on the right and~$\varphi_Y$ acting on the left, whose actions coincide up to a sign.
+
+\paragraph{Standing assumptions} From now on we take~$R$ a graded commutative noetherian ring, $\mathcal{T}$ a compactly generated triangulated category and~$\Spec R$ the set of graded prime ideals of~$R$ (which might be confusing at first for algebraic geometers).
+
+To a graded ideal~$\mathfrak{a}$ we assign
+\begin{equation}
+  \VV(\mathfrak{a})\coloneqq\left\{ \mathfrak{p}\in\Spec R\mid\mathfrak{a}\subseteq\mathfrak{p} \right\}
+\end{equation}
+and an~$R$\dash module~$M$ is \emph{$\mathfrak{a}$\dash torsion} if~$M_{\mathfrak{p}}=0$ for all~$\mathfrak{p}\in\Spec R\setminus\VV(\mathfrak{a})$, which is equivalent to the usual definition of torsion.
+
+A subset~$V$ is \emph{specialisation-closed} if for all~$\mathfrak{p}\subseteq\mathfrak{q}$ such that~$\mathfrak{p}\in V$ we have~$\mathfrak{q}\in V$.
+
+\begin{definition}
+  An object~$X$ of~$\mathcal{T}$ is \emph{$V$\dash torsion} if~$\Hom_{\mathcal{T}}^\bullet(C,X)_{\mathfrak{p}}=0$ for all~$\mathfrak{p}\in\Spec R\setminus V$ and all~$C\in\mathcal{T}^\cc$.
+
+  We then set
+  \begin{equation}
+    \mathcal{T}_V\coloneqq\left\{ X\in\mathcal{T}\mid\text{$X$ is $V$\dash torsion} \right\}
+  \end{equation}
+  which is a localising subcategory as the vanishing condition uses compact objects.
+\end{definition}
+
+\begin{proposition}
+  For a specialisation-closed subset~$V$ there are
+  \begin{enumerate}
+    \item a localisation functor~$\LL_V\colon\mathcal{T}\to\mathcal{T}$ such that~$\ker\LL_V=\mathcal{T}_V$,
+    \item a colocalisation functor~$\Gamma_V\colon\mathcal{T}\to\mathcal{T}$ such that~$\image\Gamma_V=\mathcal{T}_V$,
+  \end{enumerate}
+  such that we obtain a \emph{localisation triangle}
+  \begin{equation}
+    \Gamma_V(X)\to X\to\LL_V(X)\to
+  \end{equation}
+  for all objects~$X$ in~$\mathcal{T}$.
+\end{proposition}
+
+For~$\mathfrak{p}\in\Spec R$ we set the \emph{localisation} of an object~$X$ of~$\mathcal{T}$ at~$\mathfrak{p}$ to be
+\begin{equation}
+  X_{\mathfrak{p}}\coloneqq\LL_{\ZZ(\mathfrak{p})}(X)
+\end{equation}
+where~$\ZZ(\mathfrak{p})\coloneqq\{\mathfrak{q}\mid\mathfrak{q}\nsubseteq\mathfrak{p}\}=\Spec R\setminus\Spec R_{\mathfrak{p}}$. The natural map~$X\to X_{\mathfrak{p}}$ obtained from the adjunction induces an isomorphism
+\begin{equation}
+  \Hom_{\mathcal{T}}^\bullet(C,X)_{\mathfrak{p}}\cong\Hom_{\mathcal{T}}^\bullet(C,X_{\mathfrak{p}})
+\end{equation}
+for all compact objects~$C$ in~$\mathcal{T}$.
+
+\begin{definition}
+  We say that an object~$X$ of~$\mathcal{T}$ is \emph{$\mathfrak{p}$\dash local} if~$X\cong X_{\mathfrak{p}}$.
+\end{definition}
+
+So now we have the notion of~$\mathfrak{p}$\dash local objects and~$\mathfrak{p}$\dash torsion objects.
+
+\begin{definition}
+  For~$\mathfrak{p}\in\Spec R$ we set the \emph{local cohomology} of an object~$X$ to be
+  \begin{equation}
+    \Gamma_{\mathfrak{p}}(X)\coloneqq\Gamma_{\VV(\mathfrak{p}}\circ\LL_{\ZZ(\mathfrak{p})}(X)=\Gamma_{\VV(\mathfrak{p})}(X_{\mathfrak{p}}).
+  \end{equation}
+  This is an idempotent functor, and~$X\in\Gamma_{\mathfrak{p}}(\mathcal{T})$ if and only if~$X$ is both~$\mathfrak{p}$\dash local and~$\mathfrak{p}$\dash torsion.
+\end{definition}
+
+\begin{remark}
+  The notation is not a coincidence: it coincides with Grothendieck's local cohomology functor in the appropriate setting.
+\end{remark}
+
+\begin{lemma}
+  Let~$V$ and~$W$ be specialisation-closed subsets of~$\Spec R$ such that~$V\setminus W=\{\mathfrak{p}\}$. Then
+  \begin{equation}
+    \Gamma_V\circ\Gamma_W\cong\Gamma_{\mathfrak{p}}\cong\Gamma_W\circ\Gamma_V.
+  \end{equation}
+\end{lemma}
+This can for instance be applied to~$V=\VV(\mathfrak{p})$ and~$W=\ZZ(\mathfrak{p})$.
 
 \subsection{Stratification of big triangulated categories}
+We now have the necessary tools to introduce stratification.
+\begin{definition}
+  Let~$X$ be an object of~$\mathcal{T}$, with~$R$ acting on~$\mathcal{T}$. Then
+  \begin{equation}
+    \supp_R X\coloneqq\left\{ \mathfrak{p}\in\Spec R\mid\Gamma_{\mathfrak{p}}(X)\neq 0 \right\}
+  \end{equation}
+  is the \emph{support} of~$X$.
+\end{definition}
+\begin{remark}
+  If~$X\to Y\to Z\to$ is an exact triangle, then
+  \begin{equation}
+    \supp_R Y\subseteq\supp_R X\cup\supp_R Y
+  \end{equation}
+  and
+  \begin{equation}
+    \supp_R(\coprod_{i\in I}X_i)=\bigcup_{i\in I}\supp_R X_i.
+  \end{equation}
+\end{remark}
+
+\begin{theorem}
+  For an object~$X$ of~$\mathcal{T}$ we have
+  \begin{equation}
+    \supp_R X=\bigcup_{C\in\mathcal{T}^\cc}\min\{\Supp_R\Hom_{\mathcal{T}}^\bullet(X,Y)\}
+  \end{equation}
+  where
+  \begin{equation}
+    \Supp_R M\coloneqq\left\{ \mathfrak{p}\in\Spec R\mid M_{\mathfrak{p}}\neq 0 \right\}
+  \end{equation}
+  and
+  \begin{equation}
+    \min\mathcal{U}\coloneqq\left\{ \mathfrak{p}\in\mathcal{U}\mid\mathfrak{q}\in\mathcal{U},\mathfrak{q}\subseteq\mathfrak{p}\Rightarrow\mathfrak{q}=\mathfrak{p} \right\}.
+  \end{equation}
+\end{theorem}
+Hence the minimal elements determine the support: as we are working with specialisation-closed subsets, the support~$\supp_R$ only considers the minimal primes.
+
+As we have assumed~$\mathcal{T}$ to be compactly generated we get the following corollary.
+\begin{corollary}
+  For all objects~$X$ in~$\mathcal{T}$ we have~$\supp_R X=\emptyset$ if and only if~$X=0$.
+\end{corollary}
+
+We now come to the main definition of the lecture series.
+\begin{definition}
+  The category~$\mathcal{T}$ is \emph{stratified (by the action of~$R$)} if
+  \begin{enumerate}
+    \item we have that
+      \begin{equation}
+        \Loc(X)=\Loc(\{\Gamma_{\mathfrak{p}}(X)\mid\mathfrak{p}\in\Spec R\})
+      \end{equation}
+      for all objects~$X$ in~$\mathcal{T}$, i.e.\ we have the \emph{local-to-global principle} which says that objects are built up from~$\mathfrak{p}$\dash local and~$\mathfrak{p}$\dash torsion information;
+    \item $\Gamma_{\mathfrak{p}}(\mathcal{T})$ has no proper localising subcategories, for all~$\mathfrak{p}\in\Spec R$.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let~$\mathcal{T}$ be as above.
+  \begin{enumerate}
+    \item The local-to-global principle holds whenever~$\dim R<+\infty$, or when~$\mathcal{T}$ ``has a model.''
+    \item Suppose that the local-to-global-principle holds, then we have bijections
+      \begin{equation}
+        \begin{aligned}
+          \left\{ \text{localising subcategories of $\mathcal{T}$} \right\} & \overset{\longleftrightarrow}{1:1} \left\{ \text{collections of localising subcategories $\mathcal{S}_{\mathfrak{p}}\subseteq\mathcal{T}_{\mathfrak{p}}$ for all~$p\in\Spec R$} \right\} \\
+          \mathcal{S}\subseteq\mathcal{T} & \longmapsto (\mathcal{S}\cap\Gamma_{\mathfrak{p}}(\mathcal{T}))_{\mathfrak{p}\in\Spec R}.
+        \end{aligned}
+      \end{equation}
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  \begin{enumerate}
+    \item Neeman: $\derived(A)$ is stratified by~$R=A$, where~$A$ is a commutative noetherian ring.
+    \item Benson--Iyengar--Krause: $\StMod(kG)$ is stratified by~$\HH^\bullet(G,k)$ (where~$G$ is a finite~$p$\dash group).
+  \end{enumerate}
+\end{example}
 
 \subsection{Consequences of stratification}
+\begin{theorem}
+  Suppose that~$\mathcal{T}$ is stratified by~$R$. Then we have a bijection
+  \begin{equation}
+    \begin{aligned}
+      \left\{ \text{localising subcategories of~$\mathcal{T}$} \right\} & \overset{longleftrightarrow}{1:1} \left\{ \text{subsets of $\supp_R(\mathcal{T})$} \right\} \\
+      \mathcal{S}\subseteq\mathcal{T} & \longmapsto\supp_R(\mathcal{S})\coloneqq\bigcup_{X\in S}\supp_R X.
+    \end{aligned}
+  \end{equation}
+\end{theorem}
+
+We say~$\mathcal{T}$ is \emph{noetherian} if~$\Hom_{\mathcal{T}}^\bullet(X,Y)$ is finitely generated over~$R$ for all compact objects~$X$ and~$Y$ of~$\mathcal{T}$.
+\begin{lemma}
+  If~$\End_{\mathcal{T}}^\bullet(X)$ is noetherian then~$\supp_R X=\VV(\mathfrak{a})$, for~$\mathfrak{a}\coloneqq\ker(R\to\End_{\mathcal{T}}^\bullet(X))$.
+\end{lemma}
+This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
+\begin{theorem}
+  Let~$\mathcal{T}$ be as above, and assume moreover that~$\mathcal{T}$ is noetherian. Then we have a bijection
+  \begin{equation}
+    \begin{aligned}
+      \left\{ \text{thick subcategories of~$\mathcal{T}^\cc$} \right\} & \overset{\longleftrightarrow}{1:1}\left\{ \text{specialisation-closed subsets of $\Spec R$} \right\} \\
+      \mathcal{S}\subseteq\mathcal{T}^\cc & \longmapsto\supp_R(\mathcal{S}).
+    \end{aligned}
+  \end{equation}
+\end{theorem}
+\begin{corollary}
+  Let~$\mathcal{T}$ be as above, and assume moreover that~$\mathcal{T}$ is noetherian. Then for all compact objects~$X$ and~$Y$ of~$\mathcal{T}$ we have
+  \begin{equation}
+    \Supp_R\Hom_{\mathcal{T}}^\bullet(X,Y)=\supp_R X\cap\supp_R Y.
+  \end{equation}
+\end{corollary}
+
+\begin{example}
+  \begin{enumerate}
+    \item If~$(\mathcal{T},\otimes,\mathbf{1})$ is a tensor triangulated category then~$\mathcal{T}$ is~$\End_{\mathcal{T}}^\bullet(\mathbf{1})$-linear, and we obtain a calssification of tensor ideal localising subcategories. This generalises the classification of localising subcategories to any finite group~$G$, without the assumption on the order of~$G$.
+    \item Let~$A$ be a finite-dimensional~$k$\dash algebra. If we wish to stratify~$\derived(A)$ we run into problems: the center can be \emph{too small}:
+      \begin{enumerate}
+        \item take~$A=kG$ for~$G$ a finite group, then~$\derived(A)^\cc\cong\proj/A$, but we'd rather study~$\stmod(A)$;
+        \item take~$A=kQ$ for~$Q$ an acyclic quiver, then~$\centre^\bullet(\derived(A))=k$ if~$Q$ is Dynkin, which is of no use to us.
+      \end{enumerate}
+    \item On the other hand, $\centre^\bullet(\mathcal{T})$ can also be \emph{too big} for meaningful calculations, in which case we will often take~$\HH^\bullet(A/k)$ as the ring action on~$\mathcal{T}$.
+  \end{enumerate}
+\end{example}
 
 
 \section{Day 4: $\mathbf{K}(\Inj/X)$ and Grothendieck duality}
