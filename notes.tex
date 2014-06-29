@@ -15,6 +15,7 @@
 
 \section{Day 1: Support and cosupport of complexes}
 
+
 \section{Day 2: Infinite methods}
 \subsection{Compact objects}
 Let~$\mathcal{T}$ be a triangulated category, denote~$\Sigma$ its shift or suspension, and assume that~$\mathcal{T}$ has set-indexed coproducts.
@@ -132,7 +133,7 @@ are full triangulated subcategories.
   For a thick subcategory~$\mathcal{S}$ the following are equivalent:
   \begin{enumerate}
     \item $\mathcal{S}\hookrightarrow\mathcal{T}$ admits a right adjoint;
-    \item $Q\colon\mathcal{T}\to\mathcal{T}/\mathcal{S}$ admits a right adjoint;% TODO check these
+    \item $Q\colon\mathcal{T}\to\mathcal{T}/\mathcal{S}$ admits a right adjoint;
     \item there exists a localisation functor~$L$ such that~$\ker(L)=\mathcal{S}$;
     \item there exists a colocalisation functor~$\Gamma$ such that~$\image(\Gamma)=\mathcal{S}$.
   \end{enumerate}
@@ -294,7 +295,7 @@ We now have the necessary tools to introduce stratification.
   \end{equation}
   and
   \begin{equation}
-    \supp_R(\coprod_{i\in I}X_i)=\bigcup_{i\in I}\supp_R X_i.
+    \supp_R\left( \coprod_{i\in I}X_i \right)=\bigcup_{i\in I}\supp_R X_i.
   \end{equation}
 \end{remark}
 
@@ -428,10 +429,10 @@ The following proposition shows that~$\KKK(\Inj/X)$ is the ``bigger category'' t
   \end{proof}
 \end{proposition}
 \begin{theorem}
-  The functor~$Q$ admits a left and right adjoint. This yields a recollement% TODO fix this
+  The functor~$Q$ admits a left and right adjoint. This yields a recollement
   \begin{equation}
     \begin{tikzcd}
-      \SSing(\Qcoh/X) & \KKK(\Inj/X) & \derived(\Qcoh/X)
+      \SSing(\Qcoh/X) \arrow[hook]{r} & \KKK(\Inj/X) \arrow[bend right, swap]{l} \arrow[bend left]{l} \arrow[two heads]{r} & \derived(\Qcoh/X) \arrow[bend right, swap]{l} \arrow[bend left]{l}
     \end{tikzcd}
   \end{equation}
   where~$\SSing(\Qcoh/X)\coloneqq\KKK_\ac(\Inj/X)$ is also known as the singularity category of~$X$.
@@ -486,11 +487,11 @@ which explains the notation.
   Take~$k$ a field of characteristic~$p$ and~$G$ a finite~$p$\dash group (in the more general context of an arbitrary finite group one has to restrict to~$\otimes$\dash ideals). Then we have a recollement
   \begin{equation}
     \begin{tikzcd}
-      \StMod kG & \KKK(\Inj/kG) & \derived(kG) \\
+      \StMod kG \arrow[hook]{r} & \KKK(\Inj/kG) \arrow[bend right, swap]{l} \arrow[bend left]{l} \arrow[two heads]{r} & \derived(kG) \arrow[bend right, swap]{l} \arrow[bend left]{l} \\
       \Proj\HH^\bullet(G,k) & \HH^\bullet(G,k) & *
     \end{tikzcd}
   \end{equation}
-  The graded commutative rings below them are the natural stratifications. We see that in this case~$\derived(kG)$ is a minimal (co)localising subcategory, hence corresponds to the unique maximal prime ideal. The category on the left is the one we are the most interested in, as it tells us the most about the representation theory of~$G$.
+  The spectra of the graded commutative rings below them describe the localising subcategories. We see that in this case~$\derived(kG)$ is a minimal (co)localising subcategory, hence corresponds to the unique maximal prime ideal. The category on the left is the one we are the most interested in, as it tells us the most about the representation theory of~$G$.
 \end{example}
 
 \begin{example}
@@ -516,25 +517,25 @@ and we will be considering the situation
 \end{equation}
 We wish to find the ``infinite completion'' of Grothendieck duality. I.e.\ suppose that~$A$ admits a dualising complex~$D_A$, which is a complex of injective objects such that
 \begin{equation}
-  \begin{tikzcd}
+  \begin{tikzcd}[column sep = huge]
     \derived^\fin(A) \arrow{r}{\RRRHom_A(-,D_A)} & \derived^\fin(A)
   \end{tikzcd}
 \end{equation}
 is an equivalence. Can this be lifted to unbounded complexes?
 
-One can show that there is a diagram % TODO fix arrows
+One can show that there is a diagram
 \begin{equation}
   \begin{tikzcd}
-    \KKK(\mathrm{Proj}/A) & \KKK(\Flat/A) & \KKK(\Inj/A)
+    \KKK(\mathrm{Proj}/A) \arrow[bend left, hook]{r} & \KKK(\Flat/A) \arrow[bend left]{l} \arrow[bend left]{r}{-\otimes_A D_A} & \KKK(\Inj/A) \arrow[bend left]{l}{\Hom_A(D_A,-)}
   \end{tikzcd}
 \end{equation}
 where the right adjoint to the inclusion~$\KKK(\mathrm{Proj}/A)\hookrightarrow\KKK(\Flat/A)$ is obtained using Brown representability.
 \begin{proposition}
   The category~$\KKK(\mathrm{Proj}/A)$ is compactly generated, and we obtain the diagram
   \begin{equation}
-    \begin{tikzcd}
+    \begin{tikzcd}[column sep = large]
       \KKK(\mathrm{Proj}/A) \arrow{r}{\Hom_A(-,A)} & \KKK(\Mod/A) \arrow{r} & \derived(\Mod/A) \\
-      \KKK(\mathrm{Proj}/A)^\cc \arrow[hook]{u} \arrow{rr}{\cong} & & \derived^\fin(A)
+      \KKK(\mathrm{Proj}/A)^\cc \arrow[hook]{u} \arrow{rr}{\cong} & & \derived^\fin(A) \arrow[hook]{u}
     \end{tikzcd}
   \end{equation}
   where the compact objects are not quite the projective resolutions of finitely generated modules, but rather their duals.
@@ -545,8 +546,8 @@ This will yield the ``infinite completion'' of Grothendieck duality (in the affi
 \end{theorem}
 The passage to the compacts gives the relationship to the usual duality
 \begin{equation}
-  \begin{tikzcd}
-    \KKK(\mathrm{Proj}/A)^\cc \arrow{r}{-\otimes_AD_A} \arrow{d}{\Hom_A(-,A)} & \KKK(\Inj/A)^\cc \arrow{d}{\cong} \\
+  \begin{tikzcd}[column sep = large]
+    \KKK(\mathrm{Proj}/A)^\cc \arrow{r}{-\otimes_AD_A} \arrow{d}[swap]{\Hom_A(-,A)} & \KKK(\Inj/A)^\cc \arrow{d}{\cong} \\
     \derived^\fin(A) \arrow{r}{\RRRHom_A(-,D_A)} & \derived^\fin(A)
   \end{tikzcd}
 \end{equation}
@@ -556,8 +557,9 @@ with the bottom line being Grothendieck duality in the classical sense.
   The results of the PhD thesis by Murfet generalise this to noetherian schemes.
 \end{remark}
 
+
 \section{Day 5: Stratifying small triangulated categories}
-Whereas day 3 concerned the stratification of big triangulated categories we now focus on the story in the small setting, i.e.\ the isomorphism classes of the objects in the category actually form a set.
+Whereas day 3 we discussed the stratification of big triangulated categories we now focus on the story in the small setting, i.e.\ the isomorphism classes of the objects in the category actually form a set.
 
 \subsection{Example: stratifying the bounded derived category of the Kronecker algebra}
 \begin{theorem}[Beilinson]
@@ -705,7 +707,7 @@ We can now define support in this situation.
 
 For a homogeneous prime ideal~$\mathfrak{p}$ of~$R$ we set
 \begin{equation}
-  \Gamma_{\mathfrak{p}}(\mathcal{T})\coloneqq\left\{ X\in\mathcal{T}_{\mathfrak{p}}\mid\End_{\mathcal{T}}^\bullet(X)_{\mathfrak{q}}=0 \right\},
+  \Gamma_{\mathfrak{p}}(\mathcal{T})\coloneqq\left\{ X\in\mathcal{T}_{\mathfrak{p}}\mid\End_{\mathcal{T}}^\bullet(X)_{\mathfrak{p}}=0 \right\},
 \end{equation}
 i.e.\ we take the~$\mathfrak{p}$\dash local and~$\mathfrak{p}$\dash torsion objects, which forms a thick subcategory of~$\mathcal{T}_{\mathfrak{p}}$.
 
