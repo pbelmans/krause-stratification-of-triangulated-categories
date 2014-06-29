@@ -13,6 +13,8 @@
 
 \clearpage
 
+\section{Day 1: Support and cosupport of complexes}
+
 \section{Day 2: Infinite methods}
 \subsection{Compact objects}
 Let~$\mathcal{T}$ be a triangulated category, denote~$\Sigma$ its shift or suspension, and assume that~$\mathcal{T}$ has set-indexed coproducts.
@@ -395,9 +397,161 @@ This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
 
 \section{Day 4: $\mathbf{K}(\Inj/X)$ and Grothendieck duality}
 \subsection{$\derived^\bounded(X)$ and compact objects}
+Let~$X$ be a separated noetherian scheme. We have a chain of inclusions
+\begin{equation}
+  \begin{tikzcd}
+    \derived^\perf(X) \arrow[hook]{r} & \derived^\bounded(\coh/X) \arrow[hook]{r} & \derived(\Qcoh/X)
+  \end{tikzcd}
+\end{equation}
+of triangulated categories. We can relate the outer two by the following proposition:
+\begin{proposition}
+  The category~$\derived(\Qcoh/X)$ is compactly generated, with~$\derived(\Qcoh/X)^\cc\cong\derived^\perf(X)$.
+\end{proposition}
+
+But for Grothendieck duality (amongst other reasons) we are mostly interested in~$\derived^\bounded(\coh/X)$, which contains noncompact objects (relative to~$\derived(\Qcoh/X)$) if~$X$ is not regular. Hence the category~$\derived(\Qcoh/X)$ is ``too small'' to have~$\derived^\bounded(\coh/X)$ as its category of compacts.
+
+To remedy this, observe that~$\Qcoh/X$ is a Grothendieck category, hence it has enough injective objects, so we have~$\Inj/X\hookrightarrow\Qcoh/X$, where~$\Inj/X$ is closed under coproducts. Writing down the definitions for the derived category we get the following situation:
+\begin{equation}
+  \begin{tikzcd}
+    \KKK_\ac(\Inj/X) \arrow[hook]{r} \arrow[hook]{d} & \KKK(\Inj/X) \arrow[hook]{d} \arrow[two heads]{r} \arrow{rd}{Q} & \KKK(\Inj/X)/\KKK_\ac(\Inj/X) \arrow{d}{\cong} \\
+    \KKK_\ac(\Qcoh/X) \arrow[hook]{r} & \KKK(\Qcoh/X) \arrow[two heads]{r} & \derived(\Qcoh/X).
+  \end{tikzcd}
+\end{equation}
+The following proposition shows that~$\KKK(\Inj/X)$ is the ``bigger category'' that we need, with the desired compact objects.
+\begin{proposition}
+  The category~$\KKK(\Inj/X)$ is compactly generated, and~$Q$ induces an equivalence~$\KKK(\Inj/X)^\cc\cong\derived^\bounded(\coh/X)$.
+  \begin{proof}
+    The set of compact generators corresponds to injective resolutions of coherent sheaves. Checking that these are compact boils down to studying~$\coh/X$ inside~$\Qcoh/X$, and that they are generating is proved using Baer's injectivity criterion.
+  \end{proof}
+\end{proposition}
+\begin{theorem}
+  The functor~$Q$ admits a left and right adjoint. This yields a recollement% TODO fix this
+  \begin{equation}
+    \begin{tikzcd}
+      \SSing(\Qcoh/X) & \KKK(\Inj/X) & \derived(\Qcoh/X)
+    \end{tikzcd}
+  \end{equation}
+  where~$\SSing(\Qcoh/X)\coloneqq\KKK_\ac(\Inj/X)$ is also known as the singularity category of~$X$.
+
+  \begin{proof}
+    Brown representability gives us the right adjoint for~$Q$, because~$\Inj/X$ is closed under coproducts.
+
+    The proof for the left adjoint went a bit haywire and is not reproduced here.
+  \end{proof}
+\end{theorem}
+
+\begin{corollary}
+  A product of acyclic complexes of injectives (which in general could not be exact) is again acyclic.
+\end{corollary}
+
+\begin{remark}
+  Denoting the left and right adjoint by~$Q_\lambda$ and~$Q_\rho$ respectively, we get that
+  \begin{equation}
+    \begin{aligned}
+      \image Q_\lambda&=\SSing(\Qcoh/X)^\perp=\text{K-injective complexes}, \\
+      \image Q_\rho&={}^\perp\SSing(\Qcoh/X).% TODO improve perp
+    \end{aligned}
+  \end{equation}
+\end{remark}
+
+\begin{exercise}
+  Based on a question by Lunts--Schn\"urer: the right adjoint~$Q_\rho$ identifies~$\derived(\Qcoh/X)$ with the full subcategory of~K-injective complexes. Are they closed under taking coproducts? (Hint: if and only if~$X$ is regular)
+\end{exercise}
+
+\begin{corollary}
+  The upper row of the recollement yields (as left adjoints preserve compacts)
+  \begin{equation}
+    \begin{tikzcd}
+      \derived^\bounded(\coh/X)/\derived^\perf(X) \arrow{d} & \derived^\bounded(\coh/X) \arrow{d}{\cong} \arrow[two heads]{l} & \derived^\perf(X) \arrow{d}{\cong} \arrow[hook]{l} \\
+      \SSing(\Qcoh/X)^\cc & \KKK(\Inj/X)^\cc \arrow[two heads]{l} & \derived(\Qcoh/X)^\cc \arrow[hook]{l}
+    \end{tikzcd}
+  \end{equation}
+  where the first vertical functor is an equivalence up to direct summands: $\SSing(\Qcoh/X)^\cc$ is karoubian but the domain is not in general.
+\end{corollary}
+The category~$\derived^\bounded(\coh/X)/\derived^\perf(X)$ occurs in two contexts:
+\begin{enumerate}
+  \item singularity categories, by Orlov,
+  \item stable derived categories, by Buchweitz,
+\end{enumerate}
+which explains the notation.
+
+\begin{remark}
+  This works for any locally noetherian Grothendieck category, provided that~$\derived(\mathcal{A})$ is compactly generated.
+\end{remark}
+
+\begin{example}
+  Take~$k$ a field of characteristic~$p$ and~$G$ a finite~$p$\dash group (in the more general context of an arbitrary finite group one has to restrict to~$\otimes$\dash ideals). Then we have a recollement
+  \begin{equation}
+    \begin{tikzcd}
+      \StMod kG & \KKK(\Inj/kG) & \derived(kG) \\
+      \Proj\HH^\bullet(G,k) & \HH^\bullet(G,k) & *
+    \end{tikzcd}
+  \end{equation}
+  The graded commutative rings below them are the natural stratifications. We see that in this case~$\derived(kG)$ is a minimal (co)localising subcategory, hence corresponds to the unique maximal prime ideal. The category on the left is the one we are the most interested in, as it tells us the most about the representation theory of~$G$.
+\end{example}
+
+\begin{example}
+  The category~$\SSing(\Qcoh/X)$ has been stratified (via tensor action) when~$X$ is locally a complete intersection, this is a result by Greg Stevenson.
+\end{example}
 
 \subsection{Grothendieck duality}
+Let~$A$ be a commutative noetherian ring. Associated to~$A$ we have
+\begin{equation}
+  \begin{aligned}
+    \Inj/A & \qquad\text{injective $A$-modules} \\
+    \mathrm{Proj}/A & \qquad\text{projective $A$-modules} \\
+    \Flat/A & \qquad\text{flat $A$-modules} \\
+    \derived^\fin(A) & \qquad\left\{ X\in\derived(\Mod/A)\mid\bigoplus_{n\in\mathbb{Z}}\HH^n(X)\text{ finitely generated over $A$} \right\}
+  \end{aligned}
+\end{equation}
+and we will be considering the situation
+\begin{equation}
+  \begin{tikzcd}
+    \mathrm{mod}/A \arrow[hook]{d} \arrow[hook]{rr} & & \Mod/A \arrow[hook]{d} \\
+    \derived^\bounded(\mathrm{mod}/A) \arrow{r}{\cong} & \derived^\fin(A) \arrow[hook]{r} & \derived(\Mod/A).
+  \end{tikzcd}
+\end{equation}
+We wish to find the ``infinite completion'' of Grothendieck duality. I.e.\ suppose that~$A$ admits a dualising complex~$D_A$, which is a complex of injective objects such that
+\begin{equation}
+  \begin{tikzcd}
+    \derived^\fin(A) \arrow{r}{\RRRHom_A(-,D_A)} & \derived^\fin(A)
+  \end{tikzcd}
+\end{equation}
+is an equivalence. Can this be lifted to unbounded complexes?
 
+One can show that there is a diagram % TODO fix arrows
+\begin{equation}
+  \begin{tikzcd}
+    \KKK(\mathrm{Proj}/A) & \KKK(\Flat/A) & \KKK(\Inj/A)
+  \end{tikzcd}
+\end{equation}
+where the right adjoint to the inclusion~$\KKK(\mathrm{Proj}/A)\hookrightarrow\KKK(\Flat/A)$ is obtained using Brown representability.
+\begin{proposition}
+  The category~$\KKK(\mathrm{Proj}/A)$ is compactly generated, and we obtain the diagram
+  \begin{equation}
+    \begin{tikzcd}
+      \KKK(\mathrm{Proj}/A) \arrow{r}{\Hom_A(-,A)} & \KKK(\Mod/A) \arrow{r} & \derived(\Mod/A) \\
+      \KKK(\mathrm{Proj}/A)^\cc \arrow[hook]{u} \arrow{rr}{\cong} & & \derived^\fin(A)
+    \end{tikzcd}
+  \end{equation}
+  where the compact objects are not quite the projective resolutions of finitely generated modules, but rather their duals.
+\end{proposition}
+This will yield the ``infinite completion'' of Grothendieck duality (in the affine case):
+\begin{theorem}[Iyengar--Krause]
+  The functor~$-\otimes_AD_A\colon\KKK(\mathrm{Proj}/A)\to\KKK(\Inj/A)$ is an equivalence.
+\end{theorem}
+The passage to the compacts gives the relationship to the usual duality
+\begin{equation}
+  \begin{tikzcd}
+    \KKK(\mathrm{Proj}/A)^\cc \arrow{r}{-\otimes_AD_A} \arrow{d}{\Hom_A(-,A)} & \KKK(\Inj/A)^\cc \arrow{d}{\cong} \\
+    \derived^\fin(A) \arrow{r}{\RRRHom_A(-,D_A)} & \derived^\fin(A)
+  \end{tikzcd}
+\end{equation}
+with the bottom line being Grothendieck duality in the classical sense.
+
+\begin{remark}
+  The results of the PhD thesis by Murfet generalise this to noetherian schemes.
+\end{remark}
 
 \section{Day 5: Stratification of small triangulated categories}
 Whereas day 3 concerned the stratification of big triangulated categories we now focus on the story in the small setting, i.e.\ the isomorphism classes of the objects in the category actually form a set.
