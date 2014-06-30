@@ -23,7 +23,7 @@
   Foxby's support is the ``small support'': it is not specialisation-closed. Hence it is not the same as support of a module.
 \end{remark}
 \begin{remark}
-  The formalism of (co)support using local (co)homology is a good way of avoid the use of field objects.
+  The formalism of (co)support using local (co)homology is a good way of avoiding the use of field objects.
 \end{remark}
 \begin{remark}
   The equivalence~$\StMod kG\cong\KKK_\ac(\Inj/kG)$ is obtained from the \emph{Tate resolution}: as the injectives and projectives in~$kG$ coincide, one glues together an injective and a projective resolution for an object in the stable module category.
@@ -37,7 +37,7 @@ Let~$\mathcal{T}$ be a triangulated category, denote~$\Sigma$ its shift or suspe
   An object~$X$ of~$\mathcal{T}$ is \emph{compact} if~$\Hom_{\mathcal{T}}(X,-)\colon\mathcal{T}\to\Ab$ preserves coproducts.
 \end{definition}
 \begin{lemma}
-  An object~$X$ is compact if and only if for all~$X\to\coprod_{i\in I}Y_i$ there exists a factorisation through~$\coprod_{i\in I}Y_i$, where~$I_0\subseteq I_0$ is a finite subset.
+  An object~$X$ is compact if and only if for all~$X\to\coprod_{i\in I}Y_i$ there exists a factorisation through~$\coprod_{i\in I}Y_i$, where~$I_0\subseteq I$ is a finite subset.
 \end{lemma}
 \begin{remark}
   These compact objects serve as building blocks for the category~$\mathcal{T}$ and they constitute a thick subcategory~$\mathcal{T}^\cc$.
@@ -67,9 +67,9 @@ Let~$\mathcal{T}$ be a triangulated category, denote~$\Sigma$ its shift or suspe
   \end{proof}
 \end{proposition}
 \begin{proposition}
-  Let~$X$ and~$Y$ be compact object of~$\mathcal{T}$. If~$Y\in\Loc(X)$ then we already have~$Y\in\Thick(X)$.
+  Let~$X$ and~$Y$ be compact objects of~$\mathcal{T}$. If~$Y\in\Loc(X)$ then we already have~$Y\in\Thick(X)$.
 \end{proposition}
-Hence if a compact objects~$Y$ can be obtained from a compact objects~$X$ in infinitely many steps it can also be done in finitely many.
+Hence if a compact object~$Y$ can be obtained from a compact object~$X$ in infinitely many steps it can also be done in finitely many.
 \begin{example}
   Let~$A$ be any ring and take~$X\in\derived(\Mod/A)$. Then the following are equivalent:
   \begin{enumerate}
@@ -131,14 +131,14 @@ are full triangulated subcategories.
   A priori it is unclear whether a Verdier quotient~$\mathcal{T}/\mathcal{S}$ is locally small.
 \end{remark}
 \begin{definition}
-   There is a natural transformation~$\eta\colon\identity_{\mathcal{T}}\Rightarrow L$ such that
+  A \emph{localisation functor} is an exact endofunctor~$L\colon\mathcal{T}\to\mathcal{T}$ if there is a natural transformation~$\eta\colon\identity_{\mathcal{T}}\Rightarrow L$ such that
   \begin{enumerate}
     \item $L\circ\eta\colon L\Rightarrow L^2$ is invertible, i.e.\ for all~$X$ the morphism~$L(\eta_X)\colon L(X)\to L^2(X)$ is an isomorphism;
     \item $L\circ\eta=\eta\circ L$, i.e.\ $L(\eta_X)=\eta_{L(X)}$.
   \end{enumerate}
 \end{definition}
 \begin{definition}
-  A \emph{localisation functor} is an exact endofunctor~$\Gamma\colon\mathcal{T}\to\mathcal{T}$ for which~$\Gamma^\opp$ is a localisation functor.
+  A \emph{colocalisation functor} is an exact endofunctor~$\Gamma\colon\mathcal{T}\to\mathcal{T}$ for which the opposite functor~$\Gamma^\opp$ is a localisation functor.
 \end{definition}
 \begin{remark}
   The notation~$\Gamma$ is a reference both to Grothendieck's local cohomology functor and the symmetry between~$L$ and~$\Gamma$.
@@ -183,18 +183,33 @@ The problem that we would like to solve is the description of all localising sub
   \item how can we explicitly describe them?
 \end{enumerate}
 
-% TODO finish this last part
-
+\begin{definition}
+  Let~$\mathcal{T}$ be a triangulated category that has coproducts. Then~$\mathcal{T}$ is \emph{well-generated} if~$\mathcal{T}=\Loc(\mathcal{C})$, where~$\mathcal{C}$ is a set of~$\alpha$\dash compact objects, and~$\alpha$ is a regular cardinal.
+\end{definition}
+The case~$\alpha=\mathbb{N}$ yields the usual definition of compactly generated.
+\begin{theorem}
+  Brown representability holds for well-generated categories.
+\end{theorem}
+\begin{corollary}
+  Let~$\mathcal{T}$ be a compactly generated triangulated category. Let~$\mathcal{C}$ be any set of objects of~$\mathcal{T}$ (we no longer assume the objects to be compact). Then~$\Loc(\mathcal{C})\hookrightarrow\mathcal{T}$ admits a right adjoint.
+\end{corollary}
+\begin{theorem}
+  Let~$\mathcal{T}$ be a compactly generated triangulated category. Then
+  \begin{equation}
+    \operatorname{card}\left\{ \Loc(\mathcal{C})\subseteq\mathcal{T}\mid\text{$\mathcal{C}$ a set} \right\}\leq 2^{2^{\#\mathcal{T}^\cc}}
+  \end{equation}
+  where~$\#\mathcal{T}^\cc\coloneqq\operatorname{card}(\Mor(\mathcal{T}^\cc))$.
+\end{theorem}
 
 \section{Day 3: Stratifying of big triangulated categories}
 \subsection{Rings acting on triangulated categories}
-Recall that for a commutative noetherian ring~$A$ we have the associated (big) derived category~$\derived(A)\coloneqq\derived(\Mod/A)$, and to an object~$X$ in~$\derived(A)$ we have associated a support~$\supp X$ and~$\cosupp X$ which are subsets of~$\Spec A$. This way we parametrise localising subcategories.
+Recall that for a commutative noetherian ring~$A$ we have the associated (big) derived category~$\derived(A)\coloneqq\derived(\Mod/A)$, and to an object~$X$ in~$\derived(A)$ we have associated a support~$\supp X$ and cosupport~$\cosupp X$ which are subsets of~$\Spec A$. This way we parametrise localising subcategories.
 \begin{lemma}
   Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\supp X\subseteq \supp Y$ if and only if~$\Loc(X)\subseteq\Loc(Y)$.
 \end{lemma}
 
 \begin{lemma}
-  Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\cosupp X\subseteq \cosupp Y$ if and only if~$\Coloc(X)\subseteq\Coloc(Y)$.\checkthis{I didn't copy the right hand side}
+  Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\cosupp X\subseteq \cosupp Y$ if and only if~$\Coloc(X)\subseteq\Coloc(Y)$.
 \end{lemma}
 
 \begin{corollary}
@@ -361,7 +376,7 @@ We now come to the main definition of the lecture series.
   \end{enumerate}
 \end{proposition}
 
-\begin{example}
+\begin{example} {\ }
   \begin{enumerate}
     \item Neeman: $\derived(A)$ is stratified by~$R=A$, where~$A$ is a commutative noetherian ring.
     \item Benson--Iyengar--Krause: $\StMod(kG)$ is stratified by~$\HH^\bullet(G,k)$ (where~$G$ is a finite~$p$\dash group).
@@ -374,7 +389,7 @@ We now come to the main definition of the lecture series.
   \begin{equation}
     \begin{tikzcd}
       \left\{ \text{localising subcategories of~$\mathcal{T}$} \right\} \arrow[leftrightarrow]{d}{1:1} & \mathcal{S}\subseteq\mathcal{T} \arrow[mapsto]{d} \\
-      \left\{ \text{subsets of $\supp_R(\mathcal{T})$} \right\} & \supp_R(\mathcal{S})\coloneqq\bigcup_{X\in S}\supp_R X.
+      \left\{ \text{subsets of $\supp_R(\mathcal{T})$} \right\} & \supp_R(\mathcal{S})\coloneqq\bigcup_{X\in\mathcal{S}}\supp_R X.
     \end{tikzcd}
   \end{equation}
 \end{theorem}
@@ -408,7 +423,7 @@ This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
         \item take~$A=kG$ for~$G$ a finite group, then~$\derived(A)^\cc\cong\proj/A$, but we'd rather study~$\stmod(A)$;
         \item take~$A=kQ$ for~$Q$ an acyclic quiver, then~$\centre^\bullet(\derived(A))=k$ if~$Q$ is Dynkin, which is of no use to us.
       \end{enumerate}
-    \item On the other hand, $\centre^\bullet(\mathcal{T})$ can also be \emph{too big} for meaningful calculations, in which case we will often take~$\mathrm{HH}^\bullet(A/k)$ as the ring action on~$\mathcal{T}$.
+    \item On the other hand, $\centre^\bullet(\mathcal{T})$ can also be \emph{too big} for meaningful calculations, in which case we will often take~$\mathrm{HH}^\bullet(A/k)$ as the ring acting on~$\mathcal{T}$, instead of the entire graded centre.
   \end{enumerate}
 \end{example}
 
@@ -426,7 +441,7 @@ of triangulated categories. We can relate the outer two by the following proposi
   The derived category~$\derived(\Qcoh/X)$ is compactly generated, with $\derived(\Qcoh/X)^\cc\cong\derived^\perf(X)$.
 \end{proposition}
 
-But for Grothendieck duality (amongst other reasons) we are mostly interested in~$\derived^\bounded(\coh/X)$, which contains noncompact objects (relative to~$\derived(\Qcoh/X)$) if~$X$ is not regular. Hence the category~$\derived(\Qcoh/X)$ is ``too small'' to have~$\derived^\bounded(\coh/X)$ as its category of compacts.
+But for Grothendieck duality (amongst other reasons) we are mostly interested in~$\derived^\bounded(\coh/X)$, which contains noncompact objects  if~$X$ is not regular. Hence the category~$\derived(\Qcoh/X)$ is ``too small'' to have~$\derived^\bounded(\coh/X)$ as its category of compacts.
 
 To remedy this, observe that~$\Qcoh/X$ is a Grothendieck category, hence it has enough injective objects, so we have~$\Inj/X\hookrightarrow\Qcoh/X$, where~$\Inj/X$ is closed under coproducts. Writing down the definitions for the derived category we get the following situation:
 \begin{equation}
@@ -459,7 +474,7 @@ The following proposition shows that~$\KKK(\Inj/X)$ is the ``bigger category'' t
 \end{theorem}
 
 \begin{corollary}
-  A product of acyclic complexes of injectives (which in general could not be exact) is again acyclic.
+  A product of acyclic complexes of injectives (which in general might not be exact) is again acyclic.
 \end{corollary}
 
 \begin{remark}
@@ -505,7 +520,7 @@ which explains the notation.
       \Proj\HH^\bullet(G,k) & \HH^\bullet(G,k) & *
     \end{tikzcd}
   \end{equation}
-  The spectra of the graded commutative rings below them describe the localising subcategories. We see that in this case~$\derived(kG)$ is a minimal (co)localising subcategory, hence corresponds to the unique maximal prime ideal. The category on the left is the one we are the most interested in, as it tells us the most about the representation theory of~$G$.
+  The spectra of the graded commutative rings in the bottom row describe the localising subcategories. We see that in this case~$\derived(kG)$ is a minimal (co)localising subcategory, hence corresponds to the unique maximal prime ideal. The category on the left is the one we are the most interested in, as it tells us the most about the representation theory of~$G$.
 \end{example}
 
 \begin{example}
@@ -573,7 +588,7 @@ with the bottom line being Grothendieck duality in the classical sense.
 
 
 \section{Day 5: Stratifying small triangulated categories}
-Whereas day 3 we discussed the stratification of big triangulated categories we now focus on the story in the small setting, i.e.\ the isomorphism classes of the objects in the category actually form a set.
+Whereas on day 3 we discussed the stratification of big triangulated categories we now focus on the story in the small setting, i.e.\ the isomorphism classes of the objects in the category actually form a set.
 
 \subsection{Example: stratifying the bounded derived category of the Kronecker algebra}
 \begin{theorem}[Beilinson]
@@ -618,7 +633,7 @@ In the special case that~$n=1$ we get the Kronecker algebra
 \end{equation}
 which is moreover hereditary.
 
-\paragraph{Problem} We wish to describe the lattice of thick subcategories of~$\derived^\bounded(\mathbb{P}_k^1)$\fixthis{refer to earlier: day 3?}.
+\paragraph{Problem} We wish to describe the lattice of thick subcategories of~$\derived^\bounded(\mathbb{P}_k^1)$.
 
 This problem boils down to describing the indecomposables, and the category is hereditary the indecomposables are the so called ``stalk complexes'', i.e.\ up to shift we have that they are
 \begin{equation}
@@ -640,7 +655,14 @@ We can now set up the lattice of thick subcategories:
 These thick subcategories are ordered by inclusion, which gives us the desired lattice structure. For the thick subcategories of the first kind we moreover have that~$\mathcal{U}\subseteq\mathcal{V}$ if and only if~$\mathcal{C}_{\mathcal{U}}\subseteq\mathcal{C}_{\mathcal{V}}$. The~$\mathcal{C}_i$ on the other hand are incomparable to eachother.
 
 This gives us the following picture:
-% TODO draw picture
+\begin{equation}
+  \begin{tikzcd}[column sep = small]
+    {} & \derived^\bounded(\mathbb{P}_k^1) \arrow[-]{rd} \arrow[-]{ld} & & & \text{discrete} & & \text{continuous} \\
+    \mathcal{C}_i \arrow[-]{rd} & & \mathcal{C}_{\mathcal{U}} \arrow[-]{ld} & \cong & \mathbb{Z} & \sqcup & 2^{\mathbb{P}_k^1(k)} \\
+    & \left\{ 0 \right\}
+  \end{tikzcd}
+\end{equation}
+i.e.\ we take the coproduct of lattices. The exceptional objects~$\mathcal{O}_{\mathbb{P}_k^1}(i)$ give rise to ``discrete'' information in the lattice, we have one thick subcategory for each~$i\in\mathbb{Z}$ and these are all incomparable (i.e.\ the usual order of~$\mathbb{Z}$ is not important here), whereas the subsets of closed points correspond to ``continuous'' information.
 
 \subsection{Stratification of bounded derived categories of hereditary algebras}
 
@@ -674,7 +696,7 @@ In order to describe the second bijection in this diagram we use the fact that t
     \end{tabular}
   \end{center}
 
-  where~$\mathcal{C}\cap\mathrm{mod}/A$ denotes those objects of~$\mathcal{C}$ concentrated in degree~0, and the left adjoint to the inclusion~$\mathcal{C}\cap\mathrm{mod}/A\hookrightarrow\mathrm{mod}/A$ furnishes a projective generator, for which we have an exceptional collection. Hence admissible subcategories correspond to subcategories generated by exceptional sequences.
+  where~$\mathcal{C}\cap\mathrm{mod}/A$ denotes those objects of~$\mathcal{C}$ concentrated in degree~0, and the left adjoint to the inclusion~$\mathcal{C}\cap\mathrm{mod}/A\hookrightarrow\mathrm{mod}/A$ furnishes a projective generator, for which we have an exceptional collection of the module category. Hence admissible subcategories correspond to subcategories generated by exceptional sequences.
 \end{remark}
 
 
