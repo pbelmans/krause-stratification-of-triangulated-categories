@@ -1,7 +1,104 @@
 \documentclass[10pt,a4paper]{article}
-\input{packages}
-\input{configuration}
-\input{macros}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\hypersetup{hypertexnames = false, bookmarksdepth = 2, bookmarksopen = true, colorlinks, linkcolor = black, citecolor = black, urlcolor = black, pdfstartview={XYZ null null 1}}
+
+\usepackage{amsfonts}
+\usepackage[fleqn, leqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{biblatex}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage{enumitem}
+\usepackage{fixltx2e}
+\usepackage{mathtools}
+\usepackage{parskip}
+\usepackage{thmtools}
+\usepackage{tikz-cd}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xparse}
+\usepackage{xspace}
+
+\usepackage[T1]{fontenc}
+\usepackage[charter]{mathdesign}
+\usepackage[scaled]{beramono,berasans}
+\usepackage{eucal}
+\usepackage{epstopdf}
+\usepackage{microtype}
+\frenchspacing
+
+\addbibresource{bibliography.bib}
+
+\relpenalty=10000
+\binoppenalty=10000
+
+% todonotes configuration
+\newcounter{todocounter}
+\DeclareDocumentCommand\addreference{g}{\stepcounter{todocounter}\todo[color = blue!30, fancyline]{\thetodocounter. Add reference\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\checkthis{g}{\stepcounter{todocounter}\todo[color = red!50, fancyline]{\thetodocounter. Check this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\fixthis{g}{\stepcounter{todocounter}\todo[color = orange!50, fancyline]{\thetodocounter. Fix this\IfNoValueF{#1}{: #1}}\xspace}
+\DeclareDocumentCommand\expand{g}{\stepcounter{todocounter}\todo[color = green!50, fancyline]{\thetodocounter. Expand\IfNoValueF{#1}{: #1}}\xspace}
+\newcommand\removethis{\stepcounter{todocounter}\todo[color=yellow!50]{\thetodocounter. Remove this?}}
+
+% environments
+\declaretheoremstyle[
+  spaceabove = 3pt,
+  spacebelow = 3pt,
+]{lecture}
+\theoremstyle{lecture}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\mathchardef\mhyphen="2D
+\newcommand\dash{\nobreakdash-\hspace{0pt}}
+\newcommand\sslash{\mathbin{/\mkern-6mu/}}
+
+\newcommand\Ab{\ensuremath{\mathrm{Ab}}}
+\newcommand\ac{\ensuremath{\mathrm{ac}}}
+\newcommand\bounded{\ensuremath{\mathrm{b}}}
+\newcommand\cc{\ensuremath{\mathrm{c}}}
+\newcommand\coh{\ensuremath{\mathrm{coh}}}
+\newcommand\derived{\ensuremath{\mathbf{D}}}
+\newcommand\fin{\ensuremath{\mathrm{fin}}}
+\newcommand\Flat{\ensuremath{\mathrm{Flat}}}
+\newcommand\identity{\ensuremath{\mathrm{id}}}
+\newcommand\Inj{\ensuremath{\mathrm{Inj}}}
+\newcommand\Mod{\ensuremath{\mathrm{Mod}}}
+\newcommand\opp{\ensuremath{\mathrm{op}}}
+\newcommand\perf{\ensuremath{\mathrm{perf}}}
+\newcommand\proj{\ensuremath{\mathrm{proj}}}
+\newcommand\Qcoh{\ensuremath{\mathrm{Qcoh}}}
+
+\DeclareMathOperator\centre{Z}
+\DeclareMathOperator\Coloc{Coloc}
+\DeclareMathOperator\cone{cone}
+\DeclareMathOperator\cosupp{cosupp}
+\DeclareMathOperator\End{End}
+\DeclareMathOperator\Ext{Ext}
+\DeclareMathOperator\HH{H}
+\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\image{im}
+\DeclareMathOperator\KKK{\mathbf{K}}
+\DeclareMathOperator\Loc{Loc}
+\DeclareMathOperator\LL{L}
+\DeclareMathOperator\Mor{Mor}
+\DeclareMathOperator\Proj{Proj}
+\DeclareMathOperator\RRRHom{\mathbf{R}Hom}
+\DeclareMathOperator\Spec{Spec}
+\DeclareMathOperator\SSing{\mathbf{S}}
+\DeclareMathOperator\StMod{StMod}
+\DeclareMathOperator\stmod{stmod}
+\DeclareMathOperator\Supp{Supp}
+\DeclareMathOperator\supp{supp}
+\DeclareMathOperator\Thick{Thick}
+\DeclareMathOperator\VV{V}
+\DeclareMathOperator\ZZ{Z}
 
 \title{Stratification of triangulated categories}
 \author{Pieter Belmans}
