@@ -6,7 +6,6 @@
 \usepackage{amsfonts}
 \usepackage[fleqn, leqno]{amsmath}
 \usepackage{amsthm}
-\usepackage{biblatex}
 \usepackage{booktabs}
 \usepackage{diagbox}
 \usepackage{enumitem}
@@ -26,8 +25,6 @@
 \usepackage{epstopdf}
 \usepackage{microtype}
 \frenchspacing
-
-\addbibresource{bibliography.bib}
 
 \relpenalty=10000
 \binoppenalty=10000
@@ -101,7 +98,9 @@
 \DeclareMathOperator\ZZ{Z}
 
 \title{Stratification of triangulated categories}
-\author{Pieter Belmans}
+
+\author{Henning Krause\\[1ex] Notes by Pieter Belmans\footnote{Based
+    on a lecture series at the Summer School ``Derived categories'',  June 23rd to 27th 2014 in Nantes.}}
 
 \begin{document}
 \maketitle
@@ -180,7 +179,7 @@ Hence if a compact object~$Y$ can be obtained from a compact object~$X$ in infin
 \begin{theorem}
   Let~$\mathcal{T}$ be a compactly generated triangulated category. For a functor~$H\colon\mathcal{T}^\opp\to\Ab$ the following are equivalent:
   \begin{enumerate}
-    \item $H$ is cohomological, i.e.\ it sends exact triangles to exact sequences and it sends coproducts to products;
+    \item $H$ is cohomological, i.e.\ it sends exact triangles in~$\mathcal{T}$ to exact sequences and it sends coproducts in~$\mathcal{T}$ to products;
     \item $H$ is representable, i.e.\ there exists an object~$X\in\mathcal{T}$ such that~$H\cong\Hom_{\mathcal{T}}(-,X)$.
   \end{enumerate}
 \end{theorem}
@@ -241,7 +240,7 @@ are full triangulated subcategories.
   The notation~$\Gamma$ is a reference both to Grothendieck's local cohomology functor and the symmetry between~$L$ and~$\Gamma$.
 \end{remark}
 \begin{proposition}
-  For a thick subcategory~$\mathcal{S}$ the following are equivalent:
+  For a thick subcategory~$\mathcal{S}$ of~$\mathcal{T}$ the following are equivalent:
   \begin{enumerate}
     \item $\mathcal{S}\hookrightarrow\mathcal{T}$ admits a right adjoint;
     \item $Q\colon\mathcal{T}\to\mathcal{T}/\mathcal{S}$ admits a right adjoint;
@@ -283,13 +282,16 @@ The problem that we would like to solve is the description of all localising sub
 \begin{definition}
   Let~$\mathcal{T}$ be a triangulated category that has coproducts. Then~$\mathcal{T}$ is \emph{well-generated} if~$\mathcal{T}=\Loc(\mathcal{C})$, where~$\mathcal{C}$ is a set of~$\alpha$\dash compact objects, and~$\alpha$ is a regular cardinal.
 \end{definition}
-The case~$\alpha=\mathbb{N}$ yields the usual definition of compactly generated.
+The case~$\alpha=\aleph_0$ yields the usual definition of a compactly generated category.
 \begin{theorem}
   Brown representability holds for well-generated categories.
 \end{theorem}
 \begin{corollary}
   Let~$\mathcal{T}$ be a compactly generated triangulated category. Let~$\mathcal{C}$ be any set of objects of~$\mathcal{T}$ (we no longer assume the objects to be compact). Then~$\Loc(\mathcal{C})\hookrightarrow\mathcal{T}$ admits a right adjoint.
 \end{corollary}
+\begin{exercise}
+  The corollary is due to Neeman; find this important result in his book on triangulated categories (it's well hidden, unfortunately).
+\end{exercise}
 \begin{theorem}
   Let~$\mathcal{T}$ be a compactly generated triangulated category. Then
   \begin{equation}
@@ -298,16 +300,16 @@ The case~$\alpha=\mathbb{N}$ yields the usual definition of compactly generated.
   where~$\#\mathcal{T}^\cc\coloneqq\operatorname{card}(\Mor(\mathcal{T}^\cc))$.
 \end{theorem}
 
-\section{Day 3: Stratifying of big triangulated categories}
+\section{Day 3: Stratification of big triangulated categories}
 \subsection{Rings acting on triangulated categories}
-Recall that for a commutative noetherian ring~$A$ we have the associated (big) derived category~$\derived(A)\coloneqq\derived(\Mod/A)$, and to an object~$X$ in~$\derived(A)$ we have associated a support~$\supp X$ and cosupport~$\cosupp X$ which are subsets of~$\Spec A$. This way we parametrise localising subcategories.
-\begin{lemma}
+Recall that for a commutative noetherian ring~$A$ we have the associated (big) derived category~$\derived(A)\coloneqq\derived(\Mod/A)$, and to an object~$X$ in~$\derived(A)$ we have associated a support~$\supp X$ and cosupport~$\cosupp X$ which are subsets of~$\Spec A$. This way we parametrise localising and colocalising subcategories. More precisely, the main results from the first lecture are:
+\begin{theorem}
   Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\supp X\subseteq \supp Y$ if and only if~$\Loc(X)\subseteq\Loc(Y)$.
-\end{lemma}
+\end{theorem}
 
-\begin{lemma}
+\begin{theorem}
   Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\cosupp X\subseteq \cosupp Y$ if and only if~$\Coloc(X)\subseteq\Coloc(Y)$.
-\end{lemma}
+\end{theorem}
 
 \begin{corollary}
   Let~$X$ and~$Y$ be objects of~$\derived(A)$. Then~$\Ext_A^\bullet(X,Y)=0$ if and only if~$\supp X\cap\cosupp Y=\emptyset$.
@@ -319,7 +321,7 @@ Now more generally, let~$\mathcal{T}$ be a triangulated category.
   \Hom_{\mathcal{T}}^\bullet(X,Y)\coloneqq\bigoplus_{n\in\mathbb{Z}}\Hom_{\mathcal{T}}(X,\Sigma^nY)=0?
 \end{equation}
 
-Fix a~$\mathbb{Z}$\dash graded commutative ring~$R=\bigoplus_{n\in\mathbb{Z}}R^n$, i.e.\ we have~$rs=(-1)^{|r||s|}sr$ for~$r$ and~$s$ homogeneous elements. This graded-commutativity enters the picture because will often take~$R$ to be a cohomology ring.
+Fix a~$\mathbb{Z}$\dash graded commutative ring~$R=\bigoplus_{n\in\mathbb{Z}}R^n$, i.e.\ we have~$rs=(-1)^{|r||s|}sr$ for~$r$ and~$s$ homogeneous elements. This graded-commutativity enters the picture because we will often take~$R$ to be a cohomology ring.
 \begin{definition}
   Let~$\mathcal{T}$ be a triangulated category and~$R$ a graded commutative ring. We say that~$\mathcal{T}$ is~\emph{$R$\dash linear}, or that~\emph{$R$ acts on~$\mathcal{T}$} if there is a homomorphism of rings
   \begin{equation}
@@ -400,7 +402,7 @@ So now we have the notion of~$\mathfrak{p}$\dash local objects and~$\mathfrak{p}
 \begin{lemma}
   Let~$V$ and~$W$ be specialisation-closed subsets of~$\Spec R$ such that we have~$V\setminus W=\{\mathfrak{p}\}$. Then
   \begin{equation}
-    \Gamma_V\circ\Gamma_W\cong\Gamma_{\mathfrak{p}}\cong\Gamma_W\circ\Gamma_V.
+    \Gamma_V\circ\LL_W\cong\Gamma_{\mathfrak{p}}\cong\LL_W\circ\Gamma_V.
   \end{equation}
 \end{lemma}
 This can for instance be applied to~$V=\VV(\mathfrak{p})$ and~$W=\ZZ(\mathfrak{p})$.
@@ -428,13 +430,14 @@ We now have the necessary tools to introduce stratification.
 \begin{theorem}
   For an object~$X$ of~$\mathcal{T}$ we have
   \begin{equation}
-    \supp_R X=\bigcup_{C\in\mathcal{T}^\cc}\min\{\Supp_R\Hom_{\mathcal{T}}^\bullet(X,Y)\}
+    \supp_R
+    X=\bigcup_{C\in\mathcal{T}^\cc}\min\{\Supp_R\Hom_{\mathcal{T}}^\bullet(C,X)\}
   \end{equation}
-  where
+  where for an~$R$-module~$M$
   \begin{equation}
     \Supp_R M\coloneqq\left\{ \mathfrak{p}\in\Spec R\mid M_{\mathfrak{p}}\neq 0 \right\}
   \end{equation}
-  and
+  and a subset~$\mathcal{U}\subseteq\Spec R$
   \begin{equation}
     \min\mathcal{U}\coloneqq\left\{ \mathfrak{p}\in\mathcal{U}\mid\mathfrak{q}\in\mathcal{U},\mathfrak{q}\subseteq\mathfrak{p}\Rightarrow\mathfrak{q}=\mathfrak{p} \right\}.
   \end{equation}
@@ -448,7 +451,7 @@ As we have assumed~$\mathcal{T}$ to be compactly generated we get the following 
 
 We now come to the main definition of the lecture series.
 \begin{definition}
-  The category~$\mathcal{T}$ is \emph{stratified (by the action of~$R$)} if
+  The category~$\mathcal{T}$ is \emph{stratified by (the action of)~$R$} if
   \begin{enumerate}
     \item we have that
       \begin{equation}
@@ -462,12 +465,12 @@ We now come to the main definition of the lecture series.
 \begin{proposition}
   Let~$\mathcal{T}$ be as above.
   \begin{enumerate}
-    \item The local-to-global principle holds whenever~$\dim R<+\infty$, or when~$\mathcal{T}$ ``has a model.''
-    \item Suppose that the local-to-global-principle holds, then we have bijections
+    \item The local-to-global principle holds whenever the Krull dimension of~$R$ is finite or when~$\mathcal{T}$ ``has a model.''
+    \item Suppose that the local-to-global-principle holds. Then we have bijections
       \begin{equation}
         \begin{tikzcd}
           \left\{ \text{localising subcategories of $\mathcal{T}$} \right\} \arrow[leftrightarrow]{d}{1:1} & \mathcal{S}\subseteq\mathcal{T} \arrow[mapsto]{d} \\
-          \left\{ \substack{\displaystyle\text{collections of localising subcategories of~$\mathcal{T}_{\mathfrak{p}}$} \\ \displaystyle\text{for all $p\in\Spec R$}} \right\} & (\mathcal{S}\cap\Gamma_{\mathfrak{p}}(\mathcal{T}))_{\mathfrak{p}\in\Spec R}.
+          \left\{ \substack{\displaystyle\text{collections of localising subcategories of~$\mathcal{T}_{\mathfrak{p}}$} \\ \displaystyle\text{for all $\mathfrak{p}\in\Spec R$}} \right\} & (\mathcal{S}\cap\Gamma_{\mathfrak{p}}(\mathcal{T}))_{\mathfrak{p}\in\Spec R}.
         \end{tikzcd}
       \end{equation}
   \end{enumerate}
@@ -493,7 +496,7 @@ We now come to the main definition of the lecture series.
 
 We say~$\mathcal{T}$ is \emph{noetherian} if~$\Hom_{\mathcal{T}}^\bullet(X,Y)$ is finitely generated over~$R$ for all compact objects~$X$ and~$Y$ of~$\mathcal{T}$.
 \begin{lemma}
-  Let~$X$ be an object of~$\mathcal{T}$. If~$\End_{\mathcal{T}}^\bullet(X)$ is noetherian then~$\supp_R X=\VV(\mathfrak{a})$, for~$\mathfrak{a}\coloneqq\ker(R\to\End_{\mathcal{T}}^\bullet(X))$.
+  Let~$X$ be an object of~$\mathcal{T}$. If~$\End_{\mathcal{T}}^\bullet(X)$ is finitely generated over~$R$ then~$\supp_R X=\VV(\mathfrak{a})$, for~$\mathfrak{a}\coloneqq\ker(R\to\End_{\mathcal{T}}^\bullet(X))$.
 \end{lemma}
 This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
 \begin{theorem}
@@ -501,7 +504,7 @@ This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
   \begin{equation}
     \begin{tikzcd}
       \left\{ \text{thick subcategories of~$\mathcal{T}^\cc$} \right\} \arrow[leftrightarrow]{d}{1:1} & \mathcal{S}\subseteq\mathcal{T}^\cc \arrow[mapsto]{d} \\
-      \left\{ \text{specialisation-closed subsets of $\Spec R$} \right\} & \supp_R(\mathcal{S}).
+      \left\{ \text{specialisation-closed subsets of $\supp_R(\mathcal{T})$} \right\} & \supp_R(\mathcal{S}).
     \end{tikzcd}
   \end{equation}
 \end{theorem}
@@ -514,11 +517,11 @@ This allows us to classify thick subcategories of~$\mathcal{T}^\cc$!
 
 \begin{example}
   \begin{enumerate}
-    \item If~$(\mathcal{T},\otimes,\mathbf{1})$ is a tensor triangulated category then~$\mathcal{T}$ is~$\End_{\mathcal{T}}^\bullet(\mathbf{1})$-linear, and we obtain a calssification of tensor ideal localising subcategories. This generalises the classification of localising subcategories to any finite group~$G$, without the assumption on the order of~$G$.
-    \item Let~$A$ be a finite-dimensional~$k$\dash algebra. If we wish to stratify~$\derived(A)$ we run into problems as the center can be \emph{too small}:
+    \item If~$(\mathcal{T},\otimes,\mathbf{1})$ is a tensor triangulated category then~$\mathcal{T}$ is~$\End_{\mathcal{T}}^\bullet(\mathbf{1})$-linear, and we obtain a classification of tensor ideal localising subcategories. This generalises the classification of localising subcategories to any finite group~$G$, without the assumption on the order of~$G$.
+    \item Let~$A$ be a finite-dimensional~$k$\dash algebra. If we wish to stratify~$\derived(A)$ we may run into the following problems: 
       \begin{enumerate}
-        \item take~$A=kG$ for~$G$ a finite group, then~$\derived(A)^\cc\cong\proj/A$, but we'd rather study~$\stmod(A)$;
-        \item take~$A=kQ$ for~$Q$ an acyclic quiver, then~$\centre^\bullet(\derived(A))=k$ if~$Q$ is Dynkin, which is of no use to us.
+        \item The category of compacts is \emph{too small}. Take~$A=kG$ for~$G$ a finite group, then~$\derived(A)^\cc\cong \derived^\bounded(\proj/A)$, but we'd rather study~$\stmod(A)$;
+        \item The graded center is \emph{too small}.  Take~$A=kQ$ for~$Q$ an acyclic quiver, then~$\centre^\bullet(\derived(A))=k$ if~$Q$ is Dynkin, which is of no use to us.
       \end{enumerate}
     \item On the other hand, $\centre^\bullet(\mathcal{T})$ can also be \emph{too big} for meaningful calculations, in which case we will often take~$\mathrm{HH}^\bullet(A/k)$ as the ring acting on~$\mathcal{T}$, instead of the entire graded centre.
   \end{enumerate}
@@ -570,16 +573,18 @@ The following proposition shows that~$\KKK(\Inj/X)$ is the ``bigger category'' t
   \end{proof}
 \end{theorem}
 
+There is a remarkable consequence, given that taking products in $\Qcoh/X$ in general might not be exact.
+
 \begin{corollary}
-  A product of acyclic complexes of injectives (which in general might not be exact) is again acyclic.
+  A product of acyclic complexes of injectives is again acyclic.
 \end{corollary}
 
 \begin{remark}
   Denoting the left and right adjoint by~$Q_\lambda$ and~$Q_\rho$ respectively, we get that
   \begin{equation}
     \begin{aligned}
-      \image Q_\lambda&=\SSing(\Qcoh/X)^\perp=\text{K-injective complexes}, \\
-      \image Q_\rho&=\prescript{\perp}{}{\SSing(\Qcoh/X)}.
+      \image Q_\lambda&=\prescript{\perp}{}{\SSing(\Qcoh/X)}, \\
+      \image Q_\rho&=\SSing(\Qcoh/X)^\perp=\text{K-injective complexes}.
     \end{aligned}
   \end{equation}
 \end{remark}
@@ -587,6 +592,12 @@ The following proposition shows that~$\KKK(\Inj/X)$ is the ``bigger category'' t
 \begin{exercise}
   Based on a question by Lunts--Schn\"urer: the right adjoint~$Q_\rho$ identifies~$\derived(\Qcoh/X)$ with the full subcategory of~K-injective complexes. Are they closed under taking coproducts? (Hint: if and only if~$X$ is regular)
 \end{exercise}
+
+The following lemma is useful for both the exercise and the subsequent corollary.
+
+\begin{lemma}
+  Given an adjoint pair of exact functors between compactly generated triangulated categories, the left adjoint preserves compactness if and only if the right adjoint preserves coproducts.
+\end{lemma}
 
 \begin{corollary}
   The upper row of the recollement yields (as left adjoints preserve compacts)
@@ -660,7 +671,7 @@ where the right adjoint to the inclusion~$\KKK(\mathrm{Proj}/A)\hookrightarrow\K
   The category~$\KKK(\mathrm{Proj}/A)$ is compactly generated, and we obtain the diagram
   \begin{equation}
     \begin{tikzcd}[column sep = large]
-      \KKK(\mathrm{Proj}/A) \arrow{r}{\Hom_A(-,A)} & \KKK(\Mod/A) \arrow{r} & \derived(\Mod/A) \\
+      \KKK(\mathrm{Proj}/A) \arrow{r}{\Hom_A(-,A)} & \KKK(\Mod/A) \arrow[two heads]{r} & \derived(\Mod/A) \\
       \KKK(\mathrm{Proj}/A)^\cc \arrow[hook]{u} \arrow{rr}{\cong} & & \derived^\fin(A) \arrow[hook]{u}
     \end{tikzcd}
   \end{equation}
@@ -732,7 +743,7 @@ which is moreover hereditary.
 
 \paragraph{Problem} We wish to describe the lattice of thick subcategories of~$\derived^\bounded(\mathbb{P}_k^1)$.
 
-This problem boils down to describing the indecomposables, and the category is hereditary the indecomposables are the so called ``stalk complexes'', i.e.\ up to shift we have that they are
+This problem boils down to describing the indecomposables. The category is hereditary and the indecomposables are the so called ``stalk complexes'', i.e.\ up to shift we have that they are
 \begin{equation}
   \left\{ \mathcal{O}_{\mathbb{P}_k^1}(i)\mid i\in\mathbb{Z} \right\}\cup\left\{ \mathcal{O}_{\mathbb{P}_k^1,p^r}\mid\text{$p$ closed in $\mathbb{P}_k^1$}, r\in\mathbb{N} \right\}.
 \end{equation}
@@ -773,7 +784,7 @@ This behaviour can be generalised to all path algebras, and in the Dynkin case (
       \left\{ \text{non-crossing partitions of type~$\Delta$} \right\}
     \end{tikzcd}
   \end{equation}
-  where non-crossing partitions are a subset of the Weyl group~$\mathrm{W}(\Delta)$
+  where non-crossing partitions are a subset of the Weyl group~$\mathrm{W}(\Delta)$.
 \end{theorem}
 
 In order to describe the second bijection in this diagram we use the fact that thick subcategories of~$\derived^\bounded(\mathrm{mod}/A)$ are all generated by exceptional objects, i.e.\ are described by~$\Thick(\{E_1,\dotsc,E_r\})$. Associated to~$E_i$ is a reflection~$\mathrm{s}_{E_i}$ in the Weyl group, and the second bijection sends~$\mathcal{D}$ to the composition of reflections~$\mathrm{s}_{E_1}\dotsm\mathrm{s}_{E_r}$. This is a result of Ingalls--Thomas.
@@ -827,7 +838,7 @@ Of course, this definition depends on the choice of generators, and moreover con
 \begin{lemma}
   $\Thick(X\sslash{\mathfrak{a}})$ is independent of the choice of generators, as
   \begin{equation}
-    \Thick(X\sslash\mathfrak{a})=\left\{ Y\in\Thick(X)\mid\End_{\mathcal{T}}^\bullet(Y)=0\forall\mathfrak{p}\nsupseteq\mathfrak{a} \right\}.
+    \Thick(X\sslash\mathfrak{a})=\left\{ Y\in\Thick(X)\mid\End_{\mathcal{T}}^\bullet(Y)_\mathfrak{p}=0\forall\mathfrak{p}\nsupseteq\mathfrak{a} \right\}.
   \end{equation}
 \end{lemma}
 This yields the notion of \emph{$\mathfrak{a}$\dash torsion} objects.
@@ -865,7 +876,7 @@ We can now define support in this situation.
 
 For a homogeneous prime ideal~$\mathfrak{p}$ of~$R$ we set
 \begin{equation}
-  \Gamma_{\mathfrak{p}}(\mathcal{T})\coloneqq\left\{ X\in\mathcal{T}_{\mathfrak{p}}\mid\End_{\mathcal{T}}^\bullet(X)_{\mathfrak{p}}=0 \right\},
+  \Gamma_{\mathfrak{p}}(\mathcal{T})\coloneqq\left\{ X\in\mathcal{T}_{\mathfrak{p}}\mid\End_{\mathcal{T}}^\bullet(X)_{\mathfrak{q}}=0\forall\mathfrak{q}\nsupseteq\mathfrak{p} \right\},
 \end{equation}
 i.e.\ we take the~$\mathfrak{p}$\dash local and~$\mathfrak{p}$\dash torsion objects, which forms a thick subcategory of~$\mathcal{T}_{\mathfrak{p}}$.
 
@@ -890,10 +901,78 @@ Remark that (2) in the theorem relates an asymmetric condition to a symmetric on
 
 We can also prove a converse to this theorem:
 \begin{proposition}
-  Assume that~$\End_{\mathcal{T}}^\bullet(X)$ is finitely generated over~$R$ for all objects~$X$ and~$Y$ of~$\mathcal{T}$. If~$\mathcal{T}$ is not stratified then there exist objects~$X$ and~$Y$ of~$\mathcal{T}$ such that~$\supp_R X=\supp_R Y$ but~$\Thick(X)\neq\Thick(Y)$.
+  Assume that~$\End_{\mathcal{T}}^\bullet(X)$ is finitely generated over~$R$ for all objects~$X$ of~$\mathcal{T}$. If~$\mathcal{T}$ is not stratified then there exists a pair of objects~$X$ and~$Y$ in~$\mathcal{T}$ such that~$\supp_R X=\supp_R Y$ but~$\Thick(X)\neq\Thick(Y)$.
 \end{proposition}
 
-As a final remark: the results of day 3 depend on the so-called infinite methods, such as homotopy colimits and Brown representability, whereas today's results use the notion of cohomological functors to make things work.
+As a final remark: the results of day 3 depend on localisation techniques which are based on the so-called infinite methods, such as homotopy colimits and Brown representability, whereas today's results use categories of cohomological functors to make things work.
 
+\clearpage
+
+\section{References to the literature}
+
+Day 1: \cite{BIK2012a,Ne1992,Ne2011}
+
+Day 2: \cite{BIK2012b,IK2013,Ne2001}
+
+Day 3: \cite{BIK2008,BIK2011}
+
+Day 4: \cite{IK2006,Kr2005,Mu2007,St2011}
+
+Day 5: \cite{BIK2013,Kr2013}
+
+\begin{thebibliography}{99}
+
+\bibitem{BIK2008} D.~J. Benson, S.~B. Iyengar, and H.~Krause, Local
+  cohomology and support for triangulated categories, Ann.\ Scient.\
+  \'Ec.\ Norm.\ Sup.\ (4) \textbf{41} (2008), 1--47.
+
+\bibitem{BIK2011} D. Benson, S. B. Iyengar\ and\ H. Krause, Stratifying triangulated
+categories, J. Topol. {\bf 4} (2011), no.~3, 641--666.
+
+\bibitem{BIK2012a} D. J. Benson, S. B. Iyengar\ and\ H. Krause, Colocalizing
+subcategories and cosupport, J. Reine Angew. Math. {\bf 673} (2012),
+161--207.
+
+\bibitem{BIK2012b} D. J. Benson, S. Iyengar\ and\ H. Krause, {\it
+    Representations of finite groups: local cohomology and support},
+  Oberwolfach Seminars, 43, Birkh\"auser/Springer Basel AG, Basel,
+  2012.
+
+\bibitem{BIK2013} D. J. Benson, S. B. Iyengar\ and\ H. Krause, A
+  local-global principle for small triangulated categories,
+  arXiv:1305.1668 (to appear in Math.\ Proc.\ Camb.\ Phil.\ Soc.).
+
+\bibitem{IK2006} S. Iyengar\ and\ H. Krause, Acyclicity versus total acyclicity for
+complexes over Noetherian rings, Doc. Math. {\bf 11} (2006), 207--240
+(electronic).
+
+\bibitem{IK2013} S. B. Iyengar\ and\ H. Krause, The Bousfield lattice of a triangulated
+category and stratification, Math. Z. {\bf 273} (2013), no.~3-4,
+1215--1241.
+
+\bibitem{Kr2005} H.~Krause, The stable derived category of a
+  noetherian scheme, Compositio Math. \textbf{141} (2005), 1128--1162.
+
+\bibitem{Kr2013} H. Krause, Report on locally finite triangulated
+  categories, J. K-Theory {\bf 9} (2012), no.~3, 421--458.
+
+\bibitem{Mu2007} D. Murfet, The Mock Homotopy Category of Projectives
+  and Grothendieck Duality, PhD thesis, Australian National
+  University, 2007.
+
+\bibitem{Ne1992} A.~Neeman, The chromatic tower for $\mathbf{D}(R)$, Topology
+  \textbf{31} (1992), 519--532.
+
+\bibitem{Ne2001} A.~Neeman, \emph{Triangulated categories}, Annals of
+  Mathematics Studies 148, Princeton University Press, 2001.
+
+\bibitem{Ne2011}
+A. Neeman, Colocalizing subcategories of $\mathbf{D}(R)$, J. Reine
+Angew. Math. {\bf 653} (2011), 221--243.
+
+\bibitem{St2011} G. Stevenson, Subcategories of singularity categories
+  via tensor actions, arXiv:1105.4698 (to appear in Compositio Math.).
+
+\end{thebibliography}
 \end{document}
 
